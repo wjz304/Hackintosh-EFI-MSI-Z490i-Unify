@@ -42,7 +42,7 @@
 				<key>Comment</key>
 				<string>SSDT-MCHC.aml</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Path</key>
 				<string>SSDT-MCHC.aml</string>
 			</dict>
