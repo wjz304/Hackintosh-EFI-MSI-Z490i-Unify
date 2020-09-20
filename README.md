@@ -31,14 +31,15 @@ MSI-Z490i-Unify 的黑苹果 EFI
 
 
 #### 使用
- **已知问题:** 
- Not working: 雷电3  
-
  **使用说明:** 
  1. WiFi 未配置自动连接，请安装 HeliPort 后进行链接。https://github.com/OpenIntelWireless/HeliPort  
 	(链接后，设置HeliPort.APP开机自启动即可开机自动链接WiFi)
 
-#### 感谢
+ ![Image text](screenshot/QQ20200920-183839.png)  
+ ![Image text](screenshot/QQ20200920-183718.png)  
+  
+  
+#### 鸣谢
 https://github.com/2742280997/z490i-unify  
 https://github.com/kingwood77/MSI-Z490i-Unify-Hackintosh  
 https://github.com/milkpeanut/MSI-Z490I-UNIFY-Hackintosh  
