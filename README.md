@@ -6,7 +6,7 @@ MSI-Z490i-Unify-Hackintosh
 #### 说明
 MSI-Z490i-Unify 的黑苹果 EFI  
 
-当前支持 Catalina 10.15.7  和 BigSur 11.0.1b 
+当前支持 Catalina 10.15.7  和 BigSur 11.0b6  
  
 #### 配置
 | 规格     | 详细信息                                                                       |
@@ -32,7 +32,19 @@ MSI-Z490i-Unify 的黑苹果 EFI
 
 #### 使用
  **使用说明:** 
- 1. WiFi，蓝牙 有一定概率会挂掉，暂时无解决方案，
+ 1. 有线网卡：
+    表现为网络中以太网显示电缆被拔出，无信号。
+	需要 高级--硬件--设置速度和双工，
+		速度：根据你的路由器来，如果是百兆的口，就选100，千兆的选1000。
+		双工：选节能以太网，如果还是不行，换其它的。
+ 
+ 2. 无线网卡：
+    需要配合安装 HeliPort 后进行链接。https://github.com/OpenIntelWireless/HeliPort  
+	链接后，设置 HeliPort.APP 开机自启动即可开机自动链接WiFi。
+
+ 3. 蓝牙：
+     10.15.7 低概率会挂掉。
+	 11.1b 暂时无法使用。
 
  ![Image text](screenshot/QQ20200920-183839.png)  
  ![Image text](screenshot/QQ20200920-183718.png)  
