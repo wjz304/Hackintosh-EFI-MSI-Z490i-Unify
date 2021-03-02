@@ -6,7 +6,7 @@ MSI-Z490i-Unify-Hackintosh
 #### 说明
 MSI-Z490i-Unify 的黑苹果 EFI  
 
-当前支持 Catalina 10.15.7  和 BigSur 11.0b6  
+当前支持 Catalina 10.15.7  和 BigSur 11.3b  
  
 #### 配置
 | 规格     | 详细信息                                                                       |
@@ -44,7 +44,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
 
  3. 蓝牙：
      10.15.7 低概率会挂掉。
-	 11.1b 暂时无法使用。
+	 11.3b 暂时无法使用。
 
  ![Image text](screenshot/QQ20200920-183839.png)  
  ![Image text](screenshot/QQ20200920-183718.png)  
