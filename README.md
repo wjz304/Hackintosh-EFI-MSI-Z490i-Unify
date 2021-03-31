@@ -15,7 +15,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
 | 主板     | 微星 MEG Z490I UNIFY (MS-7C77)                                                 |
 | 处理器   | 英特尔 Core i7-10700K @ 3.80GHz 八核                                           |
 | 内存     | 64 GB ( 海盗船 DDR4 3200MHz )                                                  |
-| 硬盘     | 三星 SSD 970 EVO Plus 1TB ( 1 TB / 固态硬盘 )                                  |
+| 硬盘     | 三星 SSD 980 PRO 1TB ( 1 TB / 固态硬盘 )                                       |
 | 显卡     | AMD Radeon RX 5700 XT ( 8 GB / 蓝宝石 )                                        |
 | 无线网卡 | 英特尔® Wi-Fi 6 AX201 ( 板载 )                                                 |
 | 声卡     |                                                                                |
@@ -44,7 +44,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
 
  3. 蓝牙：
      10.15.7 低概率会挂掉。
-	 11.3b 暂时无法使用。
+	 11.2.3 可连部分设备。
 
  ![Image text](screenshot/QQ20200920-183839.png)  
  ![Image text](screenshot/QQ20200920-183718.png)  
