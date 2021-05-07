@@ -22,7 +22,7 @@
 	<string>1.0</string>
 	<key>IOKitPersonalities</key>
 	<dict>
-		<key>iMacPro1,1-XHC</key>
+		<key>iMac20,2-XHC</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
 			<string>com.apple.driver.AppleUSBMergeNub</string>
@@ -48,14 +48,16 @@
 				<integer>5100</integer>
 				<key>port-count</key>
 				<data>
-				FAAAAA==
+				FQAAAA==
 				</data>
 				<key>ports</key>
 				<dict>
 					<key>HS01</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel Red USB 3.0 - 2.0</string>
 						<key>UsbConnector</key>
-						<integer>3</integer>
+						<integer>0</integer>
 						<key>name</key>
 						<string>HS01</string>
 						<key>port</key>
@@ -65,8 +67,10 @@
 					</dict>
 					<key>HS03</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel Blue 1 USB 3.0 - 2.0</string>
 						<key>UsbConnector</key>
-						<integer>3</integer>
+						<integer>0</integer>
 						<key>name</key>
 						<string>HS03</string>
 						<key>port</key>
@@ -76,8 +80,10 @@
 					</dict>
 					<key>HS04</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel Blue 2 USB 3.0 - 2.0</string>
 						<key>UsbConnector</key>
-						<integer>3</integer>
+						<integer>0</integer>
 						<key>name</key>
 						<string>HS04</string>
 						<key>port</key>
@@ -85,8 +91,36 @@
 						BAAAAA==
 						</data>
 					</dict>
+					<key>HS05</key>
+					<dict>
+						<key>Comment</key>
+						<string>9pin USB 2.0</string>
+						<key>UsbConnector</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>HS05</string>
+						<key>port</key>
+						<data>
+						BQAAAA==
+						</data>
+					</dict>
+					<key>HS06</key>
+					<dict>
+						<key>Comment</key>
+						<string>20pin USB 2.0</string>
+						<key>UsbConnector</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>HS06</string>
+						<key>port</key>
+						<data>
+						BgAAAA==
+						</data>
+					</dict>
 					<key>HS07</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel black 4 USB 2.0</string>
 						<key>UsbConnector</key>
 						<integer>0</integer>
 						<key>name</key>
@@ -98,6 +132,8 @@
 					</dict>
 					<key>HS08</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel black 3 USB 2.0</string>
 						<key>UsbConnector</key>
 						<integer>0</integer>
 						<key>name</key>
@@ -107,19 +143,23 @@
 						CAAAAA==
 						</data>
 					</dict>
-					<key>HS09</key>
+					<key>HS11</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel Type-C USB 3.0  - 2.0</string>
 						<key>UsbConnector</key>
-						<integer>255</integer>
+						<integer>9</integer>
 						<key>name</key>
-						<string>HS09</string>
+						<string>HS11</string>
 						<key>port</key>
 						<data>
-						CQAAAA==
+						CwAAAA==
 						</data>
 					</dict>
 					<key>HS13</key>
 					<dict>
+						<key>Comment</key>
+						<string>Mystic Light</string>
 						<key>UsbConnector</key>
 						<integer>255</integer>
 						<key>name</key>
@@ -129,10 +169,25 @@
 						DQAAAA==
 						</data>
 					</dict>
+					<key>HS14</key>
+					<dict>
+						<key>Comment</key>
+						<string>IOUSBHostDevice</string>
+						<key>UsbConnector</key>
+						<integer>255</integer>
+						<key>name</key>
+						<string>HS14</string>
+						<key>port</key>
+						<data>
+						DgAAAA==
+						</data>
+					</dict>
 					<key>SS01</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel Red USB 3.0</string>
 						<key>UsbConnector</key>
-						<integer>3</integer>
+						<integer>9</integer>
 						<key>name</key>
 						<string>SS01</string>
 						<key>port</key>
@@ -142,6 +197,8 @@
 					</dict>
 					<key>SS03</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel Blue 1 USB 3.0</string>
 						<key>UsbConnector</key>
 						<integer>3</integer>
 						<key>name</key>
@@ -153,6 +210,8 @@
 					</dict>
 					<key>SS04</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel Blue 2 USB 3.0</string>
 						<key>UsbConnector</key>
 						<integer>3</integer>
 						<key>name</key>
@@ -162,91 +221,25 @@
 						FAAAAA==
 						</data>
 					</dict>
-				</dict>
-			</dict>
-			<key>model</key>
-			<string>iMacPro1,1</string>
-		</dict>
-		<key>iMacPro1,1-XHC-8086_15e9</key>
-		<dict>
-			<key>CFBundleIdentifier</key>
-			<string>com.apple.driver.AppleUSBMergeNub</string>
-			<key>IOClass</key>
-			<string>AppleUSBMergeNub</string>
-			<key>IONameMatch</key>
-			<string>XHC</string>
-			<key>IOPCIPrimaryMatch</key>
-			<string>0x15e98086</string>
-			<key>IOProbeScore</key>
-			<integer>5000</integer>
-			<key>IOProviderClass</key>
-			<string>AppleUSBXHCITR</string>
-			<key>IOProviderMergeProperties</key>
-			<dict>
-				<key>kUSBSleepPortCurrentLimit</key>
-				<integer>2100</integer>
-				<key>kUSBSleepPowerSupply</key>
-				<integer>5100</integer>
-				<key>kUSBWakePortCurrentLimit</key>
-				<integer>2100</integer>
-				<key>kUSBWakePowerSupply</key>
-				<integer>5100</integer>
-				<key>port-count</key>
-				<data>
-				BAAAAA==
-				</data>
-				<key>ports</key>
-				<dict>
-					<key>SSS1</key>
+					<key>SS05</key>
 					<dict>
+						<key>Comment</key>
+						<string>20pin USB 3.0</string>
 						<key>UsbConnector</key>
-						<integer>0</integer>
+						<integer>3</integer>
 						<key>name</key>
-						<string>SSS1</string>
+						<string>SS05</string>
 						<key>port</key>
 						<data>
-						AQAAAA==
-						</data>
-					</dict>
-					<key>SSS2</key>
-					<dict>
-						<key>UsbConnector</key>
-						<integer>0</integer>
-						<key>name</key>
-						<string>SSS2</string>
-						<key>port</key>
-						<data>
-						AgAAAA==
-						</data>
-					</dict>
-					<key>SSS3</key>
-					<dict>
-						<key>UsbConnector</key>
-						<integer>9</integer>
-						<key>name</key>
-						<string>SSS3</string>
-						<key>port</key>
-						<data>
-						AwAAAA==
-						</data>
-					</dict>
-					<key>SSS4</key>
-					<dict>
-						<key>UsbConnector</key>
-						<integer>0</integer>
-						<key>name</key>
-						<string>SSS4</string>
-						<key>port</key>
-						<data>
-						BAAAAA==
+						FQAAAA==
 						</data>
 					</dict>
 				</dict>
 			</dict>
 			<key>model</key>
-			<string>iMacPro1,1</string>
+			<string>iMac20,2</string>
 		</dict>
-		<key>iMacPro1,1-XHC5</key>
+		<key>iMac20,2-XHC5</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
 			<string>com.apple.driver.AppleUSBMergeNub</string>
@@ -278,6 +271,8 @@
 				<dict>
 					<key>SSP1</key>
 					<dict>
+						<key>Comment</key>
+						<string>Panel Type-C USB 3.0</string>
 						<key>UsbConnector</key>
 						<integer>9</integer>
 						<key>name</key>
@@ -301,7 +296,7 @@
 				</dict>
 			</dict>
 			<key>model</key>
-			<string>iMacPro1,1</string>
+			<string>iMac20,2</string>
 		</dict>
 	</dict>
 	<key>OSBundleRequired</key>
