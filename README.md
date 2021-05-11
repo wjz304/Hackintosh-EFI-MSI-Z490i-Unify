@@ -42,7 +42,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
  2. 无线网卡：
     ~~需要配合安装 HeliPort 后进行链接。https://github.com/OpenIntelWireless/HeliPort  
 	链接后，设置 HeliPort.APP 开机自启动即可开机自动链接WiFi。~~  
-	*"2021/05/08 修改使用 bigsur AirportItlwm.kext"*  
+	*"2021/05/08 修改使用 bigsur AirportItlwm.kext，不需要安装 HeliPort"*  
 
  3. 蓝牙：
      ~~10.15.7 低概率会挂掉。~~ *"2021/05/08 不在对 Catalina 测试"*  
@@ -59,6 +59,8 @@ https://github.com/milkpeanut/MSI-Z490I-UNIFY-Hackintosh
 https://github.com/kreactnative/EFI-z490-ace-10700k-bigSur  
 
 https://github.com/acidanthera/OpenCorePkg  
+https://gitee.com/btwise/OpenCore_NO_ACPI  
+
 https://github.com/OpenIntelWireless/itlwm  
 https://github.com/OpenIntelWireless/HeliPort  
 
