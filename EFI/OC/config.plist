@@ -142,6 +142,8 @@
 			<false/>
 			<key>ResetLogoStatus</key>
 			<false/>
+                	<key>SyncTableIds</key>
+                	<false/>
 		</dict>
 	</dict>
 	<key>Booter</key>
@@ -639,6 +641,8 @@
 		</dict>
 		<key>Scheme</key>
 		<dict>
+                	<key>CustomKernel</key>
+                	<false/>
 			<key>FuzzyMatch</key>
 			<false/>
 			<key>KernelArch</key>

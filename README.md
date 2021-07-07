@@ -42,6 +42,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
  2. 无线网卡：
     ~~需要配合安装 HeliPort 后进行链接。https://github.com/OpenIntelWireless/HeliPort  
 	链接后，设置 HeliPort.APP 开机自启动即可开机自动链接WiFi。~~  
+	连接其他Wi-Fi前或者连接Wi-Fi后出现入不了网的情况，一定要提前先去「网络偏好设置/TCP&IP」界面内点击「DHCP续租」，它才能恢复工作。  
 	*"2021/05/08 修改使用 bigsur AirportItlwm.kext，不需要安装 HeliPort"*  
 
  3. 蓝牙：
