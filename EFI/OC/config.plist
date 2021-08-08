@@ -18,25 +18,9 @@
                     <key>Comment</key>
                     <string></string>
                     <key>Enabled</key>
-                    <true/>
-                    <key>Path</key>
-                    <string>SSDT-PMC.aml</string>
-                </dict>
-                <dict>
-                    <key>Comment</key>
-                    <string></string>
-                    <key>Enabled</key>
-                    <true/>
-                    <key>Path</key>
-                    <string>SSDT-GPRW.aml</string>
-                </dict>
-                <dict>
-                    <key>Comment</key>
-                    <string></string>
-                    <key>Enabled</key>
                     <false/>
                     <key>Path</key>
-                    <string>SSDT-TBDU.aml</string>
+                    <string>SSDT-GPRW.aml</string>
                 </dict>
                 <dict>
                     <key>Comment</key>
@@ -109,7 +93,7 @@
                     <key>Count</key>
                     <integer>0</integer>
                     <key>Enabled</key>
-                    <true/>
+                    <false/>
                     <key>Find</key>
                     <data>R1BSVwI=</data>
                     <key>Limit</key>
@@ -202,16 +186,14 @@
                 <dict>
                     <key>AAPL,slot-name</key>
                     <string>Internal@0,31,3</string>
-                    <key>device-id</key>
-                    <data>cKEAAA==</data>
                     <key>device_type</key>
                     <string>Audio device</string>
                     <key>hda-gfx</key>
                     <string>onboard-1</string>
                     <key>layout-id</key>
-                    <data>CwAAAA==</data>
+                    <integer>7</integer>
                     <key>model</key>
-                    <string>Realtek ALCS1200A</string>
+                    <string>Realtek ALC1220</string>
                 </dict>
                 <key>PciRoot(0x0)/Pci(0x2,0x0)</key>
                 <dict>
@@ -350,7 +332,7 @@
                     <key>Comment</key>
                     <string></string>
                     <key>Enabled</key>
-                    <true/>
+                    <false/>
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/FakePCIID</string>
                     <key>MaxKernel</key>
@@ -368,7 +350,7 @@
                     <key>Comment</key>
                     <string>Required to get the onboard Realtek ALC1220 audio working</string>
                     <key>Enabled</key>
-                    <true/>
+                    <false/>
                     <key>ExecutablePath</key>
                     <string></string>
                     <key>MaxKernel</key>
@@ -512,7 +494,7 @@
                     <key>Comment</key>
                     <string>macOS 12 BT</string>
                     <key>Enabled</key>
-                    <false/>
+                    <true/>
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/BlueToolFixup</string>
                     <key>MaxKernel</key>
@@ -530,7 +512,7 @@
                     <key>Comment</key>
                     <string>macOS 11 BT</string>
                     <key>Enabled</key>
-                    <true/>
+                    <false/>
                     <key>ExecutablePath</key>
                     <string></string>
                     <key>MaxKernel</key>
@@ -564,7 +546,7 @@
                     <key>BundlePath</key>
                     <string>itlwm.kext</string>
                     <key>Comment</key>
-                    <string>sys Wi-Fi</string>
+                    <string>3rd Wi-Fi</string>
                     <key>Enabled</key>
                     <false/>
                     <key>ExecutablePath</key>
@@ -580,9 +562,27 @@
                     <key>Arch</key>
                     <string>Any</string>
                     <key>BundlePath</key>
-                    <string>AirportItlwm.kext</string>
+                    <string>AirportItlwm11.kext</string>
                     <key>Comment</key>
-                    <string>3rd Wi-Fi</string>
+                    <string>11 Wi-Fi</string>
+                    <key>Enabled</key>
+                    <false/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/AirportItlwm</string>
+                    <key>MaxKernel</key>
+                    <string></string>
+                    <key>MinKernel</key>
+                    <string></string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
+                    <string>AirportItlwm12.kext</string>
+                    <key>Comment</key>
+                    <string>12 Wi-Fi</string>
                     <key>Enabled</key>
                     <true/>
                     <key>ExecutablePath</key>

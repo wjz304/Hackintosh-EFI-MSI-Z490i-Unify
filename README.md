@@ -6,7 +6,7 @@ MSI-Z490i-Unify-Hackintosh
 #### 说明
 MSI-Z490i-Unify 的黑苹果 EFI  
 
-当前支持 ~~ BigSur 11.5.1  
+当前支持 ~~ BigSur 11.5.1  & Monterey 12.0b4
 
 #### 配置
 | 规格     | 详细信息                                                                       |
@@ -38,15 +38,14 @@ MSI-Z490i-Unify 的黑苹果 EFI
 		速度：根据你的路由器来，如果是百兆的口，就选100，千兆的选1000。
 		双工：选节能以太网，如果还是不行，换其它的。
  
- 2. 无线网卡：
-    ~~需要配合安装 HeliPort 后进行链接。https://github.com/OpenIntelWireless/HeliPort  
-	链接后，设置 HeliPort.APP 开机自启动即可开机自动链接WiFi。~~  
-	连接其他Wi-Fi前或者连接Wi-Fi后出现入不了网的情况，一定要提前先去「网络偏好设置/TCP&IP」界面内点击「DHCP续租」，它才能恢复工作。  
-	*"2021/05/08 修改使用 bigsur AirportItlwm.kext，不需要安装 HeliPort"*  
-
- 3. 蓝牙：
-	 11.2.3 可连部分设备。
-
+ 2. 无线网卡 & 蓝牙：
+	 BigSur：请勾选 AirportItlwm11.kext 和 IntelBluetoothInjector.kext，并取消勾选 AirportItlwm12.kext 和 BlueToolFixup.kext。
+     Monterey：请勾选  AirportItlwm12.kext 和 BlueToolFixup.kext，并取消勾选AirportItlwm11.kext 和 IntelBluetoothInjector.kext。
+	 
+ 3. 非 RX 5700 系列 请尝试使用 config_integrated.plist 启动。
+	 
+	 
+	 
  ![Image text](screenshot/QQ20200920-233809.png)  
  ![Image text](screenshot/QQ20200920-183718.png)  
   
