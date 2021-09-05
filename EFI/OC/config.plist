@@ -18,7 +18,7 @@
                     <key>Comment</key>
                     <string></string>
                     <key>Enabled</key>
-                    <false/>
+                    <true/>
                     <key>Path</key>
                     <string>SSDT-GPRW.aml</string>
                 </dict>
@@ -93,7 +93,7 @@
                     <key>Count</key>
                     <integer>0</integer>
                     <key>Enabled</key>
-                    <false/>
+                    <true/>
                     <key>Find</key>
                     <data>R1BSVwI=</data>
                     <key>Limit</key>
@@ -143,7 +143,7 @@
                 <key>AvoidRuntimeDefrag</key>
                 <true/>
                 <key>DevirtualiseMmio</key>
-                <true/>
+                <false/>
                 <key>DisableSingleUser</key>
                 <false/>
                 <key>DisableVariableWrite</key>
@@ -169,9 +169,9 @@
                 <key>ProvideMaxSlide</key>
                 <integer>0</integer>
                 <key>RebuildAppleMemoryMap</key>
-                <true/>
-                <key>SetupVirtualMap</key>
                 <false/>
+                <key>SetupVirtualMap</key>
+                <true/>
                 <key>SignalAppleOS</key>
                 <false/>
                 <key>SyncRuntimePermissions</key>
@@ -205,6 +205,20 @@
                     <data>mz4AAA==</data>
                     <key>device_type</key>
                     <string>Display controller</string>
+                    <key>framebuffer-con0-busid</key>
+                    <data>AQAAAA==</data>
+                    <key>framebuffer-con0-enable</key>
+                    <data>AQAAAA==</data>
+                    <key>framebuffer-con0-type</key>
+                    <data>AAgAAA==</data>
+                    <key>framebuffer-con1-busid</key>
+                    <data>AgAAAA==</data>
+                    <key>framebuffer-con1-enable</key>
+                    <data>AQAAAA==</data>
+                    <key>framebuffer-con1-type</key>
+                    <data>AAgAAA==</data>
+                    <key>framebuffer-patch-enable</key>
+                    <data>AQAAAA==</data>
                     <key>model</key>
                     <string>Intel UHD Graphics 630 (Desktop)</string>
                 </dict>
@@ -782,7 +796,7 @@
                     <key>SystemAudioVolume</key>
                     <data>Rg==</data>
                     <key>boot-args</key>
-                    <string>-v shikigva=80 igfxfw=2 agdpmod=pikera</string>
+                    <string>-v keepsyms=1 shikigva=80 -cdfon igfxagdc=0 agdpmod=pikera</string>
                     <key>csr-active-config</key>
                     <data>7w8AAA==</data>
                     <key>prev-lang:kbd</key>
@@ -865,7 +879,7 @@
                 <key>HideVerbose</key>
                 <true/>
                 <key>JumpstartHotPlug</key>
-                <false/>
+                <true/>
                 <key>MinDate</key>
                 <integer>0</integer>
                 <key>MinVersion</key>
