@@ -661,7 +661,7 @@
                 <key>PanicNoKextDump</key>
                 <true/>
                 <key>PowerTimeoutKernelPanic</key>
-                <true/>
+                <false/>
                 <key>ProvideCurrentCpuInfo</key>
                 <false/>
                 <key>SetApfsTrimTimeout</key>
@@ -694,7 +694,7 @@
                 <key>ConsoleAttributes</key>
                 <integer>0</integer>
                 <key>HibernateMode</key>
-                <string>None</string>
+                <string>Auto</string>
                 <key>HideAuxiliary</key>
                 <false/>
                 <key>LauncherOption</key>
@@ -710,7 +710,7 @@
                 <key>PickerVariant</key>
                 <string>Auto</string>
                 <key>PollAppleHotKeys</key>
-                <false/>
+                <true/>
                 <key>ShowPicker</key>
                 <true/>
                 <key>TakeoffDelay</key>
@@ -746,7 +746,7 @@
                 <key>AllowSetDefault</key>
                 <true/>
                 <key>AllowToggleSip</key>
-                <false/>
+                <true/>
                 <key>ApECID</key>
                 <integer>0</integer>
                 <key>AuthRestart</key>
@@ -879,7 +879,7 @@
                 <key>HideVerbose</key>
                 <true/>
                 <key>JumpstartHotPlug</key>
-                <true/>
+                <false/>
                 <key>MinDate</key>
                 <integer>0</integer>
                 <key>MinVersion</key>
@@ -930,6 +930,8 @@
                 <dict>
                     <key>Arguments</key>
                     <string></string>
+                    <key>Comment</key>
+                    <string></string>
                     <key>Enabled</key>
                     <true/>
                     <key>Path</key>
@@ -937,6 +939,8 @@
                 </dict>
                 <dict>
                     <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
                     <string></string>
                     <key>Enabled</key>
                     <true/>
@@ -946,10 +950,52 @@
                 <dict>
                     <key>Arguments</key>
                     <string></string>
+                    <key>Comment</key>
+                    <string></string>
                     <key>Enabled</key>
                     <true/>
                     <key>Path</key>
                     <string>OpenCanopy.efi</string>
+                </dict>
+                <dict>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Path</key>
+                    <string>AudioDxe.efi</string>
+                </dict>
+                <dict>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Path</key>
+                    <string>UsbMouseDxe.efi</string>
+                </dict>
+                <dict>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Path</key>
+                    <string>OpenUsbKbDxe.efi</string>
+                </dict>
+                <dict>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Path</key>
+                    <string>CrScreenshotDxe.efi</string>
                 </dict>
             </array>
             <key>Input</key>
@@ -959,7 +1005,7 @@
                 <key>KeyForgetThreshold</key>
                 <integer>5</integer>
                 <key>KeySupport</key>
-                <true/>
+                <false/>
                 <key>KeySupportMode</key>
                 <string>Auto</string>
                 <key>KeySwap</key>
