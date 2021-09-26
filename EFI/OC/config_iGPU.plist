@@ -196,7 +196,7 @@
 				<key>device-id</key>
 				<data>mz4AAA==</data>
 				<key>device_type</key>
-				<string>Display controller</string>
+				<string>VGA compatible controller</string>
 				<key>disable-agdc</key>
 				<data>AAAAAA==</data>
 				<key>enable-hdmi-dividers-fix</key>

@@ -6,7 +6,7 @@ MSI-Z490i-Unify-Hackintosh
 #### 说明
 MSI-Z490i-Unify 的黑苹果 EFI  
 
-当前支持 ~~ BigSur 11.5.1  & Monterey 12.0b4
+当前支持 ~~ BigSur 11.5.1  & Monterey 12.0b7
 
 #### 配置
 | 规格     | 详细信息                                                                       |
@@ -42,7 +42,8 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	 BigSur：请勾选 AirportItlwm11.kext 和 IntelBluetoothInjector.kext，并取消勾选 AirportItlwm12.kext 和 BlueToolFixup.kext。
      Monterey：请勾选  AirportItlwm12.kext 和 BlueToolFixup.kext，并取消勾选AirportItlwm11.kext 和 IntelBluetoothInjector.kext。
 	 
- 3. 非 RX 5700 系列 请尝试使用 config_integrated.plist 启动。
+ 3. 非 RX 5700 系列 请尝试使用 config_iGPU.plist 启动。
+	RX 5700 系列 请尝试勾选 RadeonBoost.kext 进行优化。
 	 
 	 
 	 
