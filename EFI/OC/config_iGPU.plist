@@ -866,6 +866,8 @@
 			<dict>
 				<key>Arguments</key>
 				<string></string>
+				<key>Comment</key>
+				<string></string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -873,6 +875,8 @@
 			</dict>
 			<dict>
 				<key>Arguments</key>
+				<string></string>
+				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
 				<true/>
@@ -882,6 +886,8 @@
 			<dict>
 				<key>Arguments</key>
 				<string></string>
+				<key>Comment</key>
+				<string></string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -889,6 +895,8 @@
 			</dict>
 			<dict>
 				<key>Arguments</key>
+				<string></string>
+				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
 				<true/>
@@ -898,6 +906,8 @@
 			<dict>
 				<key>Arguments</key>
 				<string></string>
+				<key>Comment</key>
+				<string></string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -906,6 +916,8 @@
 			<dict>
 				<key>Arguments</key>
 				<string></string>
+				<key>Comment</key>
+				<string></string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -913,6 +925,8 @@
 			</dict>
 			<dict>
 				<key>Arguments</key>
+				<string></string>
+				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
 				<true/>
