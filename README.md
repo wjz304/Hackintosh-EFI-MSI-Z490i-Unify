@@ -5,7 +5,7 @@ MSI-Z490i-Unify-Hackintosh
 
 ## 说明  
 MSI-Z490i-Unify 的黑苹果 EFI  
-当前支持 Monterey 12.2
+当前支持 Monterey 12.3b
 
 ## 配置  
  规格     | 详细信息
@@ -14,7 +14,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
  主板     | 微星 MEG Z490I UNIFY (MS-7C77)
  处理器   | 英特尔 Core i7-10700K @ 3.80GHz 八核
  内存     | 64 GB ( 海盗船 DDR4 3200MHz )
- 硬盘     | 三星 SSD 980 PRO 1TB ( 1 TB / 固态硬盘 )
+ 硬盘     | 西数 WDS100T3X0C-00SJG0 ( 1 TB / 固态硬盘 )
  显卡     | AMD Radeon RX 5700 XT ( 8 GB / 蓝宝石 )
  无线网卡  | 英特尔® Wi-Fi 6 AX201 ( 板载 )
  声卡     | Realtek ALC S1220A
@@ -57,7 +57,9 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
 
  5. 如果使用 Samsung PM981 型号 会报 IONVMe 错误。  
-    如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999。
+    如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999。  
+	注意：  
+	Monterey 12.3 以上 Samsung 硬盘 启动会很慢，可以重装解决，但是仍然建议更换非三星硬盘。  
 
  6. 显示器声音控制软件：MonitorControl  
 	https://github.com/MonitorControl/MonitorControl
