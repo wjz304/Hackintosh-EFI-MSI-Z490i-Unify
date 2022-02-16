@@ -765,7 +765,7 @@
 			<key>MLB</key>
 			<string>C020419024N00008C</string>
 			<key>ProcessorType</key>
-			<integer>4105</integer>
+			<integer>0</integer>
 			<key>ROM</key>
 			<data>yHKZOVwz</data>
 			<key>SpoofVendor</key>

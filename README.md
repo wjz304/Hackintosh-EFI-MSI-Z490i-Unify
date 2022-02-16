@@ -14,7 +14,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
  主板     | 微星 MEG Z490I UNIFY (MS-7C77)
  处理器   | 英特尔 Core i7-10700K @ 3.80GHz 八核
  内存     | 64 GB ( 海盗船 DDR4 3200MHz )
- 硬盘     | 西数 WDS100T3X0C-00SJG0 ( 1 TB / 固态硬盘 )
+ 硬盘     | 西数 WDS100T3X0C-00SJG0 SN750 ( 1 TB / 固态硬盘 )
  显卡     | AMD Radeon RX 5700 XT ( 8 GB / 蓝宝石 )
  无线网卡  | 英特尔® Wi-Fi 6 AX201 ( 板载 )
  声卡     | Realtek ALC S1220A
@@ -60,6 +60,10 @@ MSI-Z490i-Unify 的黑苹果 EFI
     如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999。  
 	注意：  
 	Monterey 12.3 以上 Samsung 硬盘 启动会很慢，可以重装解决，但是仍然建议更换非三星硬盘。  
+	log show --last boot | grep "trims took"  
+	###### 980 Pro：kernel: (apfs) spaceman_scan_free_blocks:3154: disk1 scan took 212.092312 s, trims took 212.054291 s  
+	###### SN750：kernel: (apfs) spaceman_scan_free_blocks:3153: disk1 scan took 0.319178 s, trims took 0.313471 s
+
 
  6. 显示器声音控制软件：MonitorControl  
 	https://github.com/MonitorControl/MonitorControl
