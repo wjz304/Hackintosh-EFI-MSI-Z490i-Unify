@@ -191,16 +191,16 @@
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
-				<key>device_type</key>
-				<string>Display controller</string>
 				<key>device-id</key>
 				<data>mz4AAA==</data>
+				<key>device_type</key>
+				<string>Display controller</string>
 				<key>enable-metal</key>
-				<data>AQAAAA==</data>
-				<key>rps-control</key>
 				<data>AQAAAA==</data>
 				<key>model</key>
 				<string>Intel UHD Graphics 630 (Desktop)</string>
+				<key>rps-control</key>
+				<data>AQAAAA==</data>
 			</dict>
 		</dict>
 		<key>Delete</key>
@@ -654,7 +654,7 @@
 			<key>PasswordSalt</key>
 			<data></data>
 			<key>ScanPolicy</key>
-			<integer>33496835</integer>
+			<integer>0</integer>
 			<key>SecureBootModel</key>
 			<string>Default</string>
 			<key>Vault</key>
