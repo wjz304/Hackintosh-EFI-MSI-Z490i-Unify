@@ -50,8 +50,8 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	BigSur：请替换 BigSur 的 AirportItlwm.kext。
 	如果Wifi无法打开请尝试断电关机并重启。
 	 
- 3. 非 RX 5700 系列 请尝试使用 config_iGPU.plist 启动。  
-	RX 5700 系列 请尝试勾选 RadeonBoost.kext 进行优化。
+ 3. 非 RX Vega 56/64 / RX 5700 系列 请尝试使用 config_iGPU.plist 启动。  
+	RX Vega 56/64 / RX 5700 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 	 
  4. 关于 Safari 不能看 Prime/Netflix 的问题。  
 	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
@@ -60,13 +60,12 @@ MSI-Z490i-Unify 的黑苹果 EFI
     如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999。  
 	注意：  
 	Monterey 12.3 以上 Samsung 硬盘 启动会很慢，可以重装解决，但是仍然建议更换非三星硬盘。  
-	log show --last boot | grep "trims took"  
+	- ###### `log show --last boot | grep "trims took"`  
 	###### 980 Pro：kernel: (apfs) spaceman_scan_free_blocks:3154: disk1 scan took 212.092312 s, trims took 212.054291 s  
 	###### SN750：kernel: (apfs) spaceman_scan_free_blocks:3153: disk1 scan took 0.319178 s, trims took 0.313471 s
 
 
- 6. 显示器声音控制软件：MonitorControl  
-	https://github.com/MonitorControl/MonitorControl
+ 6. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)
  
 ## 预览
  ![Image text](screenshot/QQ20210930-225037.png)   
