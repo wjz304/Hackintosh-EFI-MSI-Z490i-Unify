@@ -5,7 +5,7 @@ MSI-Z490i-Unify-Hackintosh
 
 ## 说明  
 MSI-Z490i-Unify 的黑苹果 EFI  
-当前支持 Monterey 12.3.1
+当前支持 Monterey 12.3.1 (12.4b)
 
 ## 配置  
  规格     | 详细信息
