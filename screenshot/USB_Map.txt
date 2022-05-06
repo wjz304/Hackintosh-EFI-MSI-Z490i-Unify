@@ -1,6 +1,6 @@
 VEN_8086&DEV_06ED
 	Port01 ---- ACPI(HS01) ---- Panel Red 1 USB 2.0
-	
+	Port02 ---- ACPI(HS02) ---- Type-E 2.0
 	Port03 ---- ACPI(HS03) ---- Panel Blue 1 USB 2.0
 	Port04 ---- ACPI(HS04) ---- Panel Blue 2 USB 2.0
 	Port05 ---- ACPI(HS05) ---- 19pin 1 USB 2.0
@@ -15,7 +15,7 @@ VEN_8086&DEV_06ED
 	Port14 ---- ACPI(HS14) ---- Bluetooth Programming Interface
 	
 	Port17 ---- ACPI(SS01) ---- Panel Red 1 USB 3.0
-
+	Port18 ---- ACPI(SS02) ---- Type-E 3.0
 	Port19 ---- ACPI(SS03) ---- Panel Blue 1 USB 3.0
 	Port20 ---- ACPI(SS04) ---- Panel Blue 2 USB 3.0
 	Port21 ---- ACPI(SS05) ---- 19pin 1 USB 3.0
