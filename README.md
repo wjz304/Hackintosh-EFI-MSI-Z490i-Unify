@@ -48,9 +48,6 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	#### config_RX5700XT&iGPU.plist： 
 		为RX5700XT优化+核显版本（启动卡40s左右），RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 
- 1. 非 RX Vega 56/64 / RX 5700 系列 请尝试使用 config_iGPU.plist 启动。  
-	RX Vega 56/64 / RX 5700 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
-	 
  2. 有线网卡：  
     表现为网络中以太网显示电缆被拔出，无信号。  
 	需要 高级--硬件--设置速度和双工，  
