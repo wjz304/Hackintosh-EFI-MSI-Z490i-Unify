@@ -43,6 +43,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
     #### config_iGPU.plist： 
 		为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面正常，音频需要在拔插一下 HDMI 即可正常输出。
 		（关于DP音频 如果有强烈需求，可以通过 "HDMI显卡欺骗器" 解决，并将PD设置为主显示器）
+		![Image text](screenshot/HDMI显卡欺骗器.jpg)  
 	#### config_RX5700XT.plist： 
 		为RX5700XT优化核显加速版本，RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 	#### config_RX5700XT&iGPU.plist： 
