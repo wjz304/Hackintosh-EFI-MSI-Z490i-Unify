@@ -39,15 +39,15 @@ MSI-Z490i-Unify 的黑苹果 EFI
 ## 使用
  1. 关于各个配置文件：  
     #### config.plist（默认）：   
-		为核显加速且未指定独显的版本，（因为在有独显情况下开核显回导致启动卡40s左右）  
+	- 为核显加速且未指定独显的版本，（因为在有独显情况下开核显回导致启动卡40s左右）  
     #### config_iGPU.plist： 
-		为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面正常，音频需要在拔插一下 HDMI 即可正常输出。
-		（关于DP音频 如果有强烈需求，暂时可以通过 "HDMI显卡欺骗器" 解决，并将DP设置为主显示器，最近没有时间解决了）  
+	- 为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面正常，音频需要在拔插一下 HDMI 即可正常输出。  
+	（关于DP音频 如果有强烈需求，暂时可以通过 "HDMI显卡欺骗器" 解决，并将DP设置为主显示器，最近没有时间解决了）  
 	![Image text](screenshot/hdmi_virtual_display_emulator.jpg)  
 	#### config_RX5700XT.plist： 
-		为RX5700XT优化核显加速版本，RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
+	- 为RX5700XT优化核显加速版本，RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 	#### config_RX5700XT&iGPU.plist： 
-		为RX5700XT优化+核显版本（启动卡40s左右），RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
+	- 为RX5700XT优化+核显版本（启动卡40s左右），RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 
  2. 有线网卡：  
     表现为网络中以太网显示电缆被拔出，无信号。  
@@ -70,9 +70,9 @@ MSI-Z490i-Unify 的黑苹果 EFI
     如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999。  
 	注意：  
 	Monterey 12.3 以上 Samsung 硬盘 启动会很慢，可以重装解决，但是仍然建议更换非三星硬盘。  
-	- ###### `log show --last boot | grep "trims took"`  
-	###### 980 Pro：kernel: (apfs) spaceman_scan_free_blocks:3154: disk1 scan took 212.092312 s, trims took 212.054291 s  
-	###### SN750：kernel: (apfs) spaceman_scan_free_blocks:3153: disk1 scan took 0.319178 s, trims took 0.313471 s
+	###### `log show --last boot | grep "trims took"`  
+	- ###### `980 Pro：kernel: (apfs) spaceman_scan_free_blocks:3154: disk1 scan took 212.092312 s, trims took 212.054291 s`  
+	- ###### `SN750：kernel: (apfs) spaceman_scan_free_blocks:3153: disk1 scan took 0.319178 s, trims took 0.313471 s`
 
 
  6. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)
@@ -81,13 +81,14 @@ MSI-Z490i-Unify 的黑苹果 EFI
  ![Image text](screenshot/QQ20210930-225037.png)   
  ![Image text](screenshot/QQ20200920-183718.png)   
  ![Image text](screenshot/MSI_SnapShot_黑苹果&WIN11.bmp)   
-  
-## 鸣谢
-https://github.com/2742280997/z490i-unify  
-https://github.com/kingwood77/MSI-Z490i-Unify-Hackintosh  
-https://github.com/milkpeanut/MSI-Z490I-UNIFY-Hackintosh  
-https://github.com/kreactnative/EFI-z490-ace-10700k-bigSur  
 
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/wjz304/Hackintosh-EFI-MSI-Z490i-Unify.svg)](https://starchart.cc/wjz304/Hackintosh-EFI-MSI-Z490i-Unify)
+
+
+## 鸣谢
 https://github.com/acidanthera/OpenCorePkg  
 https://gitee.com/btwise/OpenCore_NO_ACPI  
 
@@ -95,6 +96,3 @@ https://github.com/OpenIntelWireless/itlwm
 https://github.com/OpenIntelWireless/HeliPort  
 
 https://github.com/dortania/bugtracker/issues/192  
-
-
-
