@@ -5,7 +5,7 @@ MSI-Z490i-Unify-Hackintosh
 
 ## 说明  
 MSI-Z490i-Unify 的黑苹果 EFI  
-当前支持 Monterey 12.4
+当前支持 Monterey 12.4 (12.5b)
 
 ## 配置  
  规格     | 详细信息
@@ -39,11 +39,9 @@ MSI-Z490i-Unify 的黑苹果 EFI
 ## 使用
  1. 关于各个配置文件：  
     #### config.plist（默认）：   
-	- 为核显加速且未指定独显的版本，（因为在有独显情况下开核显回导致启动卡40s左右）  
+	- 为核显加速且未指定独显的版本，（因为在有独显情况下开核显回导致启动卡40s左右，单核显版不卡。）  
     #### config_iGPU.plist： 
-	- 为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面正常，音频需要在拔插一下 HDMI 即可正常输出。  
-	（关于DP音频 如果有强烈需求，暂时可以通过 "HDMI显卡欺骗器" 解决，并将DP设置为主显示器，最近没有时间解决了）  
-	![Image text](screenshot/hdmi_virtual_display_emulator.jpg)  
+	- 为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面和音频正常(HDMI和DP共存时，只能HDMI输出音频)。
 	#### config_RX5700XT.plist： 
 	- 为RX5700XT优化核显加速版本，RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 	#### config_RX5700XT&iGPU.plist： 
@@ -96,3 +94,6 @@ https://github.com/OpenIntelWireless/itlwm
 https://github.com/OpenIntelWireless/HeliPort  
 
 https://github.com/dortania/bugtracker/issues/192  
+
+
+
