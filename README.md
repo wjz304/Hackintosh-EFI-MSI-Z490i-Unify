@@ -1,4 +1,4 @@
-# Hackintosh-EFI-MSI-Z490i-Unify
+# Hackintosh-EFI-MSI-Z490i-Unify  
 
 ## 介绍  
 MSI-Z490i-Unify-Hackintosh  
@@ -73,8 +73,21 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	- ###### `SN750：kernel: (apfs) spaceman_scan_free_blocks:3153: disk1 scan took 0.319178 s, trims took 0.313471 s`
 
 
- 6. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)
+ 6. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)  
  
+ 7. 关于休眠：  
+	请使用 命令或者 Hackintool 修复休眠模式 hibernatemode 和 proximitywake。  
+	如果唤醒弹窗 “电脑关机是因为发生了问题” ，请前往 “控制台” 删除 “诊断报告” 中所有日志。（主要是 “Sleep Wake Failure” 相关的）
+	另外BIOS 可开启 “PCIE设备唤醒” 和 “网络唤醒”，将支持键鼠唤醒。（不要开启 USB Standby Power at S4/S5）
+	
+	- ###### `sudo pmset -a hibernatemode 0`
+	- ###### `sudo pmset -a proximitywake 0`
+	or:  
+  	![Image text](screenshot/QQ20220523-130847.png)  
+	
+	
+
+	
 ## 预览
  ![Image text](screenshot/QQ20210930-225037.png)   
  ![Image text](screenshot/QQ20200920-183718.png)   
