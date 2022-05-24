@@ -20,7 +20,7 @@ jobs:
           release: true
 
       - run: |
-        ocvalidate ./EFI/OC/config.plist || exit 1
-        ocvalidate ./EFI/OC/config_iGPU.plist || exit 1
-        ocvalidate ./EFI/OC/config_RX5700XT.plist || exit 1
-        ocvalidate ./EFI/OC/config_RX5700XT&iGPU.plist || exit 1
+          ocvalidate ./EFI/OC/config.plist || exit 1
+          ocvalidate ./EFI/OC/config_iGPU.plist || exit 1
+          ocvalidate ./EFI/OC/config_RX5700XT.plist || exit 1
+          ocvalidate ./EFI/OC/config_RX5700XT&iGPU.plist || exit 1
