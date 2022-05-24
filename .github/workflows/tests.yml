@@ -1,0 +1,26 @@
+name: tests
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+jobs:
+  test-and-cover:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: brokeyourbike/ocvalidate-action@v0.2
+        with:
+          opencore-version: '0.8.0'
+          release: true
+
+      - run: |
+          ocvalidate ./EFI/OC/config.plist || exit 1
+          ocvalidate ./EFI/OC/config_iGPU.plist || exit 1
+          ocvalidate ./EFI/OC/config_RX5700XT.plist || exit 1
+          ocvalidate ./EFI/OC/config_RX5700XT&iGPU.plist || exit 1
