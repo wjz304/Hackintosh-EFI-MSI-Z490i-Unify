@@ -45,9 +45,16 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	#### config_RX5700XT.plist： 
 	- 为RX5700XT优化核显加速版本，RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 	#### config_RX5700XT&iGPU.plist： 
-	- 为RX5700XT优化+核显版本（启动卡40s左右），RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
+	- 为RX5700XT优化+核显版本（启动卡40s左右），RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。  
 
- 2. 有线网卡：  
+ 2. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)  
+
+ 3. 关于USB：  
+ 	USBPorts_9pin.kext 为不包含主板的 Type-E 接口的版本。  
+	USBPorts_typee.kext 为不包含主板的 9pin 接口的版本。（默认）  
+	直接拷贝替换 USBPorts.kext 即可。  
+
+ 4. 有线网卡：  
     表现为网络中以太网显示电缆被拔出，无信号。  
 	需要 高级--硬件--设置速度和双工，  
 		速度：根据你的路由器来，如果是百兆的口，就选100，千兆的选1000。  
@@ -56,28 +63,26 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	- ###### `sudo ifconfig en0 media 1000baseT mediaopt full-duplex`  
 	- ###### `sudo ifconfig en0 media 100baseTX mediaopt full-duplex`  
 
- 3. 无线网卡 & 蓝牙：  
-	BigSur：请替换 BigSur 的 AirportItlwm.kext。
-	如果Wifi无法打开请尝试断电关机并重启。
+ 5. 无线网卡 & 蓝牙：  
+	BigSur：请替换 BigSur 的 AirportItlwm.kext。  
+	如果Wifi无法打开请尝试断电关机并重启。  
+	另外 偶现开启 "-v"(啰嗦模式) 无线网卡不工作的问题，请尝试关闭 "-v" (boot-args 属性中删除 -v )。  
 	 
 
- 4. 关于 Safari 不能看 Prime/Netflix 的问题。  
+ 6. 关于 Safari 不能看 Prime/Netflix 的问题。  
 	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
 
- 5. 如果使用 Samsung PM981 型号 会报 IONVMe 错误。  
+ 7. 如果使用 Samsung PM981 型号 会报 IONVMe 错误。  
     如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999。  
 	注意：  
 	Monterey 12.3 以上 Samsung 硬盘 启动会很慢，可以重装解决，但是仍然建议更换非三星硬盘。  
 	###### `log show --last boot | grep "trims took"`  
 	- ###### `980 Pro：kernel: (apfs) spaceman_scan_free_blocks:3154: disk1 scan took 212.092312 s, trims took 212.054291 s`  
 	- ###### `SN750：kernel: (apfs) spaceman_scan_free_blocks:3153: disk1 scan took 0.319178 s, trims took 0.313471 s`
-
-
- 6. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)  
  
- 7. 关于休眠：  
+ 8. 关于休眠：  
 	请使用 命令或者 Hackintool 修复休眠模式 hibernatemode 和 proximitywake。  
-	如果唤醒弹窗 “电脑关机是因为发生了问题” ，请前往 “控制台” 删除 “诊断报告” 中所有日志。（主要是 “Sleep Wake Failure” 相关的）
+	如果唤醒弹窗 “电脑关机是因为发生了问题” ，请前往 “控制台” 删除 “诊断报告” 中所有日志。（主要是 “Sleep Wake Failure” 相关的）  
 	另外BIOS 可开启 “PCIE设备唤醒” 和 “网络唤醒”，将支持键鼠唤醒。（不要开启 USB Standby Power at S4/S5）
 	
 	- ###### `sudo pmset -a hibernatemode 0`
