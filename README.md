@@ -73,7 +73,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
 
  7. 如果使用 Samsung PM981 型号 会报 IONVMe 错误。  
-    如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999。  
+    如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999 或 4294967295（关闭trim，进入OS后可用sensei打开trim）。  
 	注意：  
 	Monterey 12.3 以上 Samsung 硬盘 启动会很慢，可以重装解决，但是仍然建议更换非三星硬盘。  
 	###### `log show --last boot | grep "trims took"`  
