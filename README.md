@@ -50,8 +50,8 @@ MSI-Z490i-Unify 的黑苹果 EFI
  2. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)  
 
  3. 关于USB：  
- 	USBPorts_9pin.kext 为不包含主板的 Type-E 接口的版本。  
-	USBPorts_typee.kext 为不包含主板的 9pin 接口的版本。（默认）  
+ 	USBPorts_9pin.kext 为不包含主板的 Type-E 接口的版本。（默认）    
+	USBPorts_typee.kext 为不包含主板的 9pin 接口的版本。  
 	直接拷贝替换 USBPorts.kext 即可。  
 
  4. 有线网卡：  
