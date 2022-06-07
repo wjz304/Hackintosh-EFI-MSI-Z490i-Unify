@@ -16,7 +16,7 @@ jobs:
 
       - uses: brokeyourbike/ocvalidate-action@v0.2
         with:
-          opencore-version: '0.8.0'
+          opencore-version: '0.8.1'
           release: true
 
       - run: |
