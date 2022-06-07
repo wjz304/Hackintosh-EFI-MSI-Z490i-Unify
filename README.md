@@ -39,7 +39,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
 ## 使用
  1. 关于各个配置文件：  
     #### config.plist（默认）：   
-	- 为核显加速且未指定独显的版本，（因为在有独显情况下开核显回导致启动卡40s左右，单核显版不卡。）  
+	- 为核显加速且未指定独显的版本，（因为在有独显情况下开核显会导致启动卡40s左右，单核显版不卡。）  
     #### config_iGPU.plist： 
 	- 为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面和音频正常(HDMI和DP共存时，只能HDMI输出音频)。
 	#### config_RX5700XT.plist： 
@@ -73,9 +73,8 @@ MSI-Z490i-Unify 的黑苹果 EFI
 	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
 
  7. 如果使用 Samsung PM981 型号 会报 IONVMe 错误。  
-    如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，请尝试修改 SetApfsTrimTimeout 为 999 或 4294967295（关闭trim，进入OS后可用sensei打开trim）。  
-	注意：  
-	Monterey 12.3 以上 Samsung 硬盘 启动会很慢，可以重装解决，但是仍然建议更换非三星硬盘。  
+    如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，启动很慢，可以尝试重装解决，或者尝试修改 SetApfsTrimTimeout 为 0（关闭trim，进入OS后可用 sensei软件 或者 sudo trimforce enable 命令 打开）。  
+	但是仍然建议更换非三星硬盘。  
 	###### `log show --last boot | grep "trims took"`  
 	- ###### `980 Pro：kernel: (apfs) spaceman_scan_free_blocks:3154: disk1 scan took 212.092312 s, trims took 212.054291 s`  
 	- ###### `SN750：kernel: (apfs) spaceman_scan_free_blocks:3153: disk1 scan took 0.319178 s, trims took 0.313471 s`
