@@ -458,7 +458,7 @@
 				<key>BundlePath</key>
 				<string>BlueToolFixup.kext</string>
 				<key>Comment</key>
-				<string>V2.6.2 | macOS 12 BT</string>
+				<string>V2.6.3 | macOS 12 BT</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>

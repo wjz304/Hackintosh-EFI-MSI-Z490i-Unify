@@ -5,7 +5,7 @@ MSI-Z490i-Unify-Hackintosh
 
 ## 说明  
 MSI-Z490i-Unify 的黑苹果 EFI  
-当前支持 Monterey 12.4 (12.5b)
+当前支持 Monterey 13.0(b)
 
 ## 配置  
  规格     | 详细信息
@@ -65,6 +65,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
 
  5. 无线网卡 & 蓝牙：  
 	BigSur：请替换 BigSur 的 AirportItlwm.kext。  
+	Monterey：请替换 Monterey 的 AirportItlwm.kext。  
 	如果Wifi无法打开请尝试断电关机并重启。  
 	另外 偶现开启 "-v"(啰嗦模式) 无线网卡不工作的问题，请尝试关闭 "-v" (boot-args 属性中删除 -v )。  
 	 
@@ -93,7 +94,7 @@ MSI-Z490i-Unify 的黑苹果 EFI
 
 	
 ## 预览
- ![Image text](screenshot/QQ20210930-225037.png)   
+ ![Image text](screenshot/QQ20220607-190543@2x.png)   
  ![Image text](screenshot/QQ20200920-183718.png)   
  ![Image text](screenshot/MSI_SnapShot_黑苹果&WIN11.bmp)   
 
