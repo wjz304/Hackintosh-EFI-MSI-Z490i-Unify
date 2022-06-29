@@ -1,0 +1,87 @@
+#
+# Copyright (C) 2022 Ing
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+
+
+name: update
+on:
+  push:
+  schedule:
+    - cron: '* */6 * * *'
+  workflow_dispatch:
+env:
+  FORCE_INSTALL: 1
+  HAS_OPENSSL_BUILD: 1
+  HAS_OPENSSL_W32BUILD: 0
+  ACID32: 1
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Install Python Dependencies
+        run: |
+          python3 -m pip install -U pip
+          pip3 install datetime urllib3 wget
+
+      - name: Run Updater
+        run: python3 -u update.py ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for changes
+        run: |
+          if [ -n "$(git status -s | grep -v -w VERTIME)" ];then
+            echo "ischanges=true" >> $GITHUB_ENV
+          else
+            echo "ischanges=false" >> $GITHUB_ENV
+          fi
+
+      - name: Commit and Push
+        if: env.ischanges == 'true'
+        run: |
+          git add .
+          git commit -m "update $(date +%Y-%m-%d" "%H:%M:%S)"
+          git push -f
+
+      - name: Generate release tag
+        if: env.ischanges == 'true'
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+          echo "::set-output name=status::success"
+
+      - name: Zip EFI
+        if: env.ischanges == 'true'
+        uses: vimtor/action-zip@v1
+        with:
+          files: EFI README.md
+          recursive: false
+          dest: Hackintosh-EFI-MSI-Z490i-Unify-${{ steps.tag.outputs.release_tag }}.zip
+
+      - name: Upload firmware to release
+        if: env.ischanges == 'true'
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          files: Hackintosh*.zip
+
+      - name: Delete workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          retain_days: 1
+          keep_minimum_runs: 3

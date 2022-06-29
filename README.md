@@ -1,7 +1,7 @@
 # Hackintosh-EFI-MSI-Z490i-Unify  
 
 ## 介绍  
-MSI-Z490i-Unify-Hackintosh  
+[Hackintosh-EFI-MSI-Z490i-Unify](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify)
 
 ## 说明  
 MSI-Z490i-Unify 的黑苹果 EFI  
