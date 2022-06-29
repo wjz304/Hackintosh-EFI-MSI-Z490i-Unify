@@ -1,4 +1,9 @@
-
+#
+# Copyright (C) 2022 Ing <https://github.com/wjz304>
+# 
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
 
 import os, sys, json, shutil, datetime, zipfile
 import urllib3
@@ -10,7 +15,7 @@ PM = urllib3.PoolManager()
 date_curr = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
 date_last = ''
 
-date_last_file = 'VERTIME'
+date_last_file = 'timestamp'
 try:
     with open(date_last_file,'r') as f:
         date_last = f.read()
