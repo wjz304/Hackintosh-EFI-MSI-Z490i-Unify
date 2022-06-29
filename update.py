@@ -136,7 +136,7 @@ class UpdateKexts():
             break
 
     def upgradeRTL8125E(self):
-        print('upgrade {}'.format('ECEnabler'))
+        print('upgrade {}'.format('RTL8125E'))
         res = PM.request('GET', 'https://api.github.com/repos/Mieze/LucyRTL8125Ethernet/releases')
         self.i2c = json.loads(res.data.decode('utf-8'))
         for i2cVer in self.i2c:
@@ -153,7 +153,7 @@ class UpdateKexts():
             break
         
     def upgradeIntel(self):
-        print('upgrade {}'.format('AirportItlwm'))
+        print('upgrade {}'.format('AirportItlwm and itlwm'))
         res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
         self.itlwm = json.loads(res.data.decode('utf-8'))
         for itlwmVer in self.itlwm:
