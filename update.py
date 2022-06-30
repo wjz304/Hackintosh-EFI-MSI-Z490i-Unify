@@ -9,7 +9,8 @@ import os, sys, json, shutil, datetime, zipfile
 import urllib3
 import wget
 
-PM = urllib3.PoolManager()
+
+PM = urllib3.PoolManager(headers={'user-agent': 'Python-urllib/3.0'})  # give github a user-agent so they don't block our requests
 
 
 date_curr = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
