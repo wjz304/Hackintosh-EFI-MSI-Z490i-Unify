@@ -38,7 +38,7 @@ date_last = ''   # Forced
 
 class UpdateKexts():
     def __init__(self, alpha = True) -> None:
-        self.alpha = True
+        self.alpha = alpha
         self.kexts = [
             ['Lilu', 'EFI/OC/Kexts/Lilu.kext', 'Lilu.kext'],
             ['WhateverGreen', 'EFI/OC/Kexts/WhateverGreen.kext', 'WhateverGreen.kext'],
@@ -111,7 +111,23 @@ class UpdateKexts():
             self.__xcopy('./tmp/' + srcPath, dstPath)
             shutil.rmtree('./tmp')
 
-    
+    def upgradeAcidantheraKexts(self, kextName, dstPath, srcPath):
+        print('upgrade {}'.format(kextName))
+        res = PM.request('GET', 'https://api.github.com/repos/acidanthera/{}/releases'.format(kextName))
+        kext = json.loads(res.data.decode('utf-8'))
+        for kextVer in kext:
+            if self.alpha is False and 'alpha' in kextVer['name'].lower():
+                continue
+            if kextVer['published_at'] > date_last:
+                for item in kextVer['assets']:
+                    if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
+                        url = item['browser_download_url']
+                        self.__dlExt(url, './tmp')
+                        self.__xcopy('./tmp/' + srcPath, dstPath)
+                        shutil.rmtree('./tmp')
+                        break
+            break
+
     def upgradeI2C(self):
         print('upgrade {}'.format('VoodooI2C and VoodooI2CHID'))
         res = PM.request('GET', 'https://api.github.com/repos/VoodooI2C/VoodooI2C/releases')
@@ -265,7 +281,12 @@ class UpdateKexts():
                     print('Dortania Kexts update error!')
                     return 1
         else:
-            # no idea
+            for kext in self.kexts:
+                try:
+                    self.upgradeAcidantheraKexts(kext[0], kext[1], kext[2])
+                except:
+                    print('Dortania Kexts update error!')
+                    return 1
             pass
         
         try:
