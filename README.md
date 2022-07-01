@@ -3,9 +3,36 @@
 ## 介绍  
 [Hackintosh-EFI-MSI-Z490i-Unify](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify)
 
+
 ## 说明  
 MSI-Z490i-Unify 的黑苹果 EFI  
 当前支持 Ventura 13.0(b)
+<!--
+downloads
+<a href="https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/releases">
+<img src="https://img.shields.io/github/downloads/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/total.svg?style=flat" alt="downloads"/>
+</a>
+-->
+<!-- version -->
+<a href="https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/releases">
+<img src="https://img.shields.io/github/release/wjz304/Hackintosh-EFI-MSI-Z490i-Unify.svg?style=flat" alt="latest version"/>
+</a>
+<!-- version -->
+<a href="https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/releases">
+<img src="https://img.shields.io/github/v/release/wjz304/Hackintosh-EFI-MSI-Z490i-Unify?include_prereleases&label=prereleases" alt="latest version"/>
+</a>
+<!-- platform -->
+<a href="https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify">
+<img src="https://img.shields.io/badge/platform-macOS-lightgrey.svg?style=flat" alt="platform"/>
+</a>
+<!-- license -->
+<a href="https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/blob/master/License.txt">
+<img src="https://img.shields.io/github/license/wjz304/Hackintosh-EFI-MSI-Z490i-Unify.svg?style=flat" alt="license"/>
+</a>
+
+* release: 稳定版本。
+* prerelease: 每天自动更新kext和OC, 可能存在未知问题。如无必要请使用 release 版本。
+
 
 ## 配置  
  规格     | 详细信息
