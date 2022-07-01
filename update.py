@@ -5,9 +5,19 @@
 # See /LICENSE for more information.
 #
 
-import os, sys, json, shutil, datetime, zipfile, platform
-import urllib3
-import wget
+import os, sys, json, shutil, getopt, datetime, zipfile, platform
+
+try:
+    import wget
+except ModuleNotFoundError:
+    os.system('pip3 install wget')
+    import wget
+
+try:
+    import urllib3
+except ModuleNotFoundError:
+    os.system('pip3 install urllib3')
+    import urllib3
 
 
 PM = urllib3.PoolManager(headers={'user-agent': 'Python-urllib/3.0'})  # give github a user-agent so they don't block our requests
@@ -155,7 +165,7 @@ class UpdateKexts():
                         break
             break
         
-    def upgradeIntel(self):
+    def upgradeItlwm(self, version = 'ventura'):
         print('upgrade {}'.format('AirportItlwm and itlwm'))
         res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
         self.itlwm = json.loads(res.data.decode('utf-8'))
@@ -164,10 +174,10 @@ class UpdateKexts():
                 continue
             if itlwmVer['published_at'] > date_last:
                 for item in itlwmVer['assets']:
-                    if 'ventura' in item['name'].lower():
+                    if version in item['name'].lower():
                         url = item['browser_download_url']
                         self.__dlExt(url, './tmp')
-                        self.__xcopy('./tmp/Ventura/AirportItlwm.kext', 'EFI/OC/Kexts/AirportItlwm.kext')
+                        self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm.kext')
                         shutil.rmtree('./tmp')
                         break
                 for item in itlwmVer['assets']:
@@ -179,7 +189,7 @@ class UpdateKexts():
                         break
             break
 
-
+    def upgradeIBT(self):
         print('upgrade {}'.format('IntelBluetoothFirmware and IntelBluetoothInjector'))
         res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/IntelBluetoothFirmware/releases')
         self.ibt = json.loads(res.data.decode('utf-8'))
@@ -245,7 +255,7 @@ class UpdateKexts():
 
 
 
-    def update(self):
+    def update(self, version = 'ventura'):
 
         if self.alpha is True:
             for kext in self.kexts:
@@ -259,9 +269,15 @@ class UpdateKexts():
             pass
         
         try:
-            self.upgradeIntel()
+            self.upgradeItlwm(version)
         except:
-            print('Intel Kexts update error!')
+            print('Itlwm Kexts update error!')
+            return 2
+
+        try:
+            self.upgradeIBT()
+        except:
+            print('IBT Kexts update error!')
             return 2
 
         try:
@@ -278,12 +294,49 @@ class UpdateKexts():
         
         return 0
 
-
+    def chanageItlwm(self, version = 'ventura'):
+        try:
+            self.upgradeItlwm(version)
+        except:
+            print('Itlwm Kexts update error!')
+            return 2
+        return 0
 
 
 if __name__ == '__main__':
-    u1 = UpdateKexts(alpha = True)
-    ret = u1.update()
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "hsiv:",["stable", "itlwm","version="])
+    except getopt.GetoptError:
+        print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>]')
+        print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>]')
+        sys.exit(9)
+    
+    isitlwm = False
+    alpha = True
+    version = 'ventura'
+    for opt, arg in opts:
+        if opt == '-h':
+            print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>]')
+            print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>]')
+            sys.exit()
+        elif opt in ("-s", "--stable"):
+            alpha = False
+        elif opt in ("-i", "--itlwm"):
+            isitlwm = True
+        elif opt in ("-v", "--version"):
+            if not arg.lower() in ('ventura', 'monterey', 'big_sur'):
+                print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>]')
+                print('test.py [--stable] [--itlwm] [--version <ventura | monterey | big_sur>]')
+                sys.exit()
+            else:
+                version = arg.lower()
+
+    
+    u1 = UpdateKexts(alpha = alpha)
+    if isitlwm is True:
+        ret = u1.chanageItlwm(version = version)
+    else:
+        ret = u1.update(version = version)
 
     if ret == 0:
         with open(date_last_file, mode="w") as f:

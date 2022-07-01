@@ -46,7 +46,7 @@ jobs:
           pip3 install datetime urllib3 wget
 
       - name: Run Updater
-        run: python3 -u update.py ${{ secrets.GITHUB_TOKEN }}
+        run: python3 -u update.py -v ventura
 
       - name: Check for changes
         run: |
@@ -71,13 +71,25 @@ jobs:
           echo "::set-output name=status::success"
           echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
 
-      - name: Zip EFI
+      - name: Zip EFI Ventura
         if: env.ischanges == 'true'
         uses: vimtor/action-zip@v1
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ steps.tag.outputs.repository_name }}-${{ steps.tag.outputs.release_tag }}.zip
+          dest: ${{ steps.tag.outputs.repository_name }}-Ventura-${{ steps.tag.outputs.release_tag }}.zip
+
+      - name: Run Chanage
+        if: env.ischanges == 'true'
+        run: python3 -u update.py -i -v monterey
+
+      - name: Zip EFI Monterey
+        if: env.ischanges == 'true'
+        uses: vimtor/action-zip@v1
+        with:
+          files: EFI README.md
+          recursive: false
+          dest: ${{ steps.tag.outputs.repository_name }}-Monterey-${{ steps.tag.outputs.release_tag }}.zip
 
       - name: Upload firmware to release
         if: env.ischanges == 'true'
