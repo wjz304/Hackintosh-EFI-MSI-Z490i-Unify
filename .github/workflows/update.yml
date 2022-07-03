@@ -52,6 +52,7 @@ jobs:
         run: |
           if [ -n "$(git status -s | grep -v -w timestamp)" ];then
             echo "ischanges=true" >> $GITHUB_ENV
+            echo "changesbody=$(git status -s | grep -v -w timestamp)" >> $GITHUB_ENV
           else
             echo "ischanges=false" >> $GITHUB_ENV
           fi
@@ -98,6 +99,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.tag.outputs.release_tag }}
+          body: ${{ env.changesbody }}
           files: Hackintosh*.zip
           prerelease: true
 
