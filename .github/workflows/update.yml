@@ -46,7 +46,7 @@ jobs:
           pip3 install datetime urllib3 wget
 
       - name: Run Updater
-        run: python3 -u update.py -v ventura
+        run: python3 -u update.py -v ventura -t ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check for changes
         run: |
@@ -81,7 +81,7 @@ jobs:
 
       - name: Run Chanage
         if: env.ischanges == 'true'
-        run: python3 -u update.py -i -v monterey
+        run: python3 -u update.py -i -v monterey -t ${{ secrets.GITHUB_TOKEN }}
 
       - name: Zip EFI Monterey
         if: env.ischanges == 'true'

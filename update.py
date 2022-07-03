@@ -20,9 +20,6 @@ except ModuleNotFoundError:
     import urllib3
 
 
-PM = urllib3.PoolManager(headers={'user-agent': 'Python-urllib/3.0'})  # give github a user-agent so they don't block our requests
-
-
 date_curr = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
 date_last = ''
 
@@ -37,7 +34,10 @@ date_last = ''   # Forced
 
 
 class UpdateKexts():
-    def __init__(self, alpha = True) -> None:
+    def __init__(self, headers = None, alpha = True) -> None:
+        if headers is None:
+            headers = {'user-agent': 'Python-urllib/3.0'}
+        self.PM = urllib3.PoolManager(headers=headers)  # give github a user-agent so they don't block our requests
         self.alpha = alpha
         self.kexts = [
             ['Lilu', 'EFI/OC/Kexts/Lilu.kext', 'Lilu.kext'],
@@ -60,7 +60,7 @@ class UpdateKexts():
         print('download {}'.format(fileName))
         if os.path.exists(fileName):
              os.remove(fileName)
-        #data = PM.request('GET', url)
+        #data = self.PM.request('GET', url)
         #with open(fileName,'wb') as f:
         #    f.write(data.data)
         wget.download(url, out=fileName)
@@ -88,7 +88,7 @@ class UpdateKexts():
     def __initDortaniaJson(self):
         print('get {}'.format('dortania config.json'))
         dortaniaUrl = 'https://raw.githubusercontent.com/dortania/build-repo/builds/config.json'
-        #res = PM.request('GET', dortaniaUrl)
+        #res = self.PM.request('GET', dortaniaUrl)
         #self.dortaniaKextsJson = json.loads(res.data.decode('utf-8'))
         wget.download(dortaniaUrl, out='dortaniaConfig.json')
         with open('dortaniaConfig.json', mode="rb") as f:
@@ -113,7 +113,7 @@ class UpdateKexts():
 
     def upgradeAcidantheraKexts(self, kextName, dstPath, srcPath):
         print('upgrade {}'.format(kextName))
-        res = PM.request('GET', 'https://api.github.com/repos/acidanthera/{}/releases'.format(kextName))
+        res = self.PM.request('GET', 'https://api.github.com/repos/acidanthera/{}/releases'.format(kextName))
         kext = json.loads(res.data.decode('utf-8'))
         for kextVer in kext:
             if self.alpha is False and 'alpha' in kextVer['name'].lower():
@@ -130,7 +130,7 @@ class UpdateKexts():
 
     def upgradeI2C(self):
         print('upgrade {}'.format('VoodooI2C and VoodooI2CHID'))
-        res = PM.request('GET', 'https://api.github.com/repos/VoodooI2C/VoodooI2C/releases')
+        res = self.PM.request('GET', 'https://api.github.com/repos/VoodooI2C/VoodooI2C/releases')
         self.i2c = json.loads(res.data.decode('utf-8'))
         for i2cVer in self.i2c:
             if self.alpha is False and 'alpha' in i2cVer['name'].lower():
@@ -149,7 +149,7 @@ class UpdateKexts():
         
     def upgradeEC(self):
         print('upgrade {}'.format('ECEnabler'))
-        res = PM.request('GET', 'https://api.github.com/repos/1Revenger1/ECEnabler/releases')
+        res = self.PM.request('GET', 'https://api.github.com/repos/1Revenger1/ECEnabler/releases')
         self.i2c = json.loads(res.data.decode('utf-8'))
         for i2cVer in self.i2c:
             if self.alpha is False and 'alpha' in i2cVer['name'].lower():
@@ -166,7 +166,7 @@ class UpdateKexts():
 
     def upgradeRTL8125E(self):
         print('upgrade {}'.format('RTL8125E'))
-        res = PM.request('GET', 'https://api.github.com/repos/Mieze/LucyRTL8125Ethernet/releases')
+        res = self.PM.request('GET', 'https://api.github.com/repos/Mieze/LucyRTL8125Ethernet/releases')
         self.i2c = json.loads(res.data.decode('utf-8'))
         for i2cVer in self.i2c:
             if self.alpha is False and 'alpha' in i2cVer['name'].lower():
@@ -183,7 +183,7 @@ class UpdateKexts():
         
     def upgradeItlwm(self, version = 'ventura'):
         print('upgrade {}'.format('AirportItlwm and itlwm'))
-        res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
+        res = self.PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
         self.itlwm = json.loads(res.data.decode('utf-8'))
         for itlwmVer in self.itlwm:
             if self.alpha is False and 'alpha' in itlwmVer['name'].lower():
@@ -207,7 +207,7 @@ class UpdateKexts():
 
     def upgradeIBT(self):
         print('upgrade {}'.format('IntelBluetoothFirmware and IntelBluetoothInjector'))
-        res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/IntelBluetoothFirmware/releases')
+        res = self.PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/IntelBluetoothFirmware/releases')
         self.ibt = json.loads(res.data.decode('utf-8'))
         for ibtVer in self.ibt:
             if self.alpha is False and 'alpha' in ibtVer['name'].lower():
@@ -231,7 +231,7 @@ class UpdateKexts():
             url = 'https://api.github.com/repos/OlarilaHackintosh/OpenCore_NO_ACPI/releases'
         else:
             url = 'https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases'
-        res = PM.request('GET', url)
+        res = self.PM.request('GET', url)
         self.ocmod = json.loads(res.data.decode('utf-8'))
         for ocVer in self.ocmod:
             if ocVer['published_at'] > date_last:
@@ -326,19 +326,20 @@ class UpdateKexts():
 
 if __name__ == '__main__':
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hsiv:",["stable", "itlwm","version="])
+        opts, args = getopt.getopt(sys.argv[1:], "hsiv:t:",["stable", "itlwm","version=","token="])
     except getopt.GetoptError:
-        print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>]')
-        print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>]')
+        print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>] [-t <token>]')
+        print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>] [--token <token>]')
         sys.exit(9)
     
     isitlwm = False
     alpha = True
     version = 'ventura'
+    token = None
     for opt, arg in opts:
         if opt == '-h':
-            print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>]')
-            print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>]')
+            print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>] [-t <token>]')
+            print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>] [--token <token>]')
             sys.exit()
         elif opt in ("-s", "--stable"):
             alpha = False
@@ -346,14 +347,19 @@ if __name__ == '__main__':
             isitlwm = True
         elif opt in ("-v", "--version"):
             if not arg.lower() in ('ventura', 'monterey', 'big_sur'):
-                print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>]')
-                print('test.py [--stable] [--itlwm] [--version <ventura | monterey | big_sur>]')
+                print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>] [-t <token>]')
+                print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>] [--token <token>]')
                 sys.exit()
             else:
                 version = arg.lower()
+        elif opt in ("-t", "--token"):
+            token = arg
 
-    
-    u1 = UpdateKexts(alpha = alpha)
+    headers = None
+    if token is not None:
+        headers = { 'user-agent': 'Python-urllib/3.0', 'Authorization': 'token {}'.format(token) }
+
+    u1 = UpdateKexts(headers = headers, alpha = alpha)
     if isitlwm is True:
         ret = u1.chanageItlwm(version = version)
     else:

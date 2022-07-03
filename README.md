@@ -93,9 +93,9 @@ downloads
  5. 无线网卡 & 蓝牙：  
 	BigSur：请替换 BigSur 的 AirportItlwm.kext。  
 	Monterey：请替换 Monterey 的 AirportItlwm.kext。  
-	如果Wifi无法打开请尝试断电关机并重启。  
+	如果Wifi/BT无法打开请尝试执行一下 `sudo kextcache -i /` 关机再开机(不要重启)。  
 	另外 偶现开启 "-v"(啰嗦模式) 无线网卡不工作的问题，请尝试关闭 "-v" (boot-args 属性中删除 -v )。  
-	 
+	另外 偶现开启 "SSDT-RHUB" BT识别错误的问题，请尝试开启/关闭 "SSDT-RHUB"。  
 
  6. 关于 Safari 不能看 Prime/Netflix 的问题。  
 	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
