@@ -52,10 +52,18 @@ jobs:
         run: |
           if [ -n "$(git status -s | grep -v -w timestamp)" ];then
             echo "ischanges=true" >> $GITHUB_ENV
-            echo "changesbody=$(git status -s | grep -v -w timestamp)" >> $GITHUB_ENV
+
+            # 设置 $GITHUB_ENV 环境变量不支持多行文本的直接设置,需要加 'EOF' 
+            # echo "changesbody=$(git status -s | grep -v -w timestamp)" >> $GITHUB_ENV
+            echo 'changesbody<<EOF' >> $GITHUB_ENV
+            git status -s | grep -v -w timestamp >> $GITHUB_ENV
+            echo 'EOF' >> $GITHUB_ENV
           else
             echo "ischanges=false" >> $GITHUB_ENV
           fi
+
+          echo ischanges: ${{ env.ischanges }}
+          echo changesbody: ${{ env.changesbody }}
 
       - name: Commit and Push
         if: env.ischanges == 'true'
