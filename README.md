@@ -92,10 +92,15 @@ downloads
 
  5. 无线网卡 & 蓝牙：  
 	BigSur：请替换 BigSur 的 AirportItlwm.kext。  
-	Monterey：请替换 Monterey 的 AirportItlwm.kext。  
-	如果Wifi/BT无法打开请尝试执行一下 `sudo kextcache -i /` 关机再开机(不要重启)。  
-	另外 偶现开启 "-v"(啰嗦模式) 无线网卡不工作的问题，请尝试关闭 "-v" (boot-args 属性中删除 -v )。  
-	另外 偶现开启 "SSDT-RHUB" BT识别错误的问题，请尝试开启/关闭 "SSDT-RHUB"。  
+	Monterey：请替换 Monterey 的 AirportItlwm.kext。 
+
+	注：  
+	1. 目前 Ventura 下 BT 的 LPM [（如何查看LPM版本）](https://support.microsoft.com/en-us/windows/what-bluetooth-version-is-on-my-pc-f5d4cff7-c00d-337b-a642-d2d23b082793)  为11的版本貌似无法正常运行，介意请勿升级Ventura。 
+	2. 如果Wifi/BT无法打开请尝试执行一下 `sudo kextcache -i /` 关机再开机(不要重启)。  
+	3. 另外 偶现开启 "-v"(啰嗦模式) 无线网卡不工作的问题，请尝试关闭 "-v" (boot-args 属性中删除 -v )。  
+	
+
+
 
  6. 关于 Safari 不能看 Prime/Netflix 的问题。  
 	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
