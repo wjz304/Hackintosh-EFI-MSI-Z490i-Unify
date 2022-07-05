@@ -1790,7 +1790,7 @@
 					<key>Codec</key>
 					<string>Custom by fuzzyrock for ALC235 Lenovo A340-22IWL</string>
 					<key>CodecID</key>
-					<real>283902517</real>
+					<integer>283902517</integer>
 					<key>ConfigData</key>
 					<data>
 					ASccMAEnHQEBJx6mAScfkAGXHEABlx0QAZce
