@@ -5,7 +5,7 @@
 # See /LICENSE for more information.
 #
 
-import os, sys, json, shutil, getopt, datetime, zipfile, platform
+import os, sys, json, shutil, getopt, datetime, zipfile, platform, plistlib
 
 try:
     import wget
@@ -269,7 +269,27 @@ class UpdateKexts():
                         break
             break
 
-
+    def checkKextsVer(self):
+        try:
+            for pf in os.listdir('EFI/OC/'):
+                if os.path.isfile('EFI/OC/{}'.format(pf)) and pf.endswith('.plist'):
+                    isChanage = False
+                    with open('EFI/OC/{}'.format(pf), 'rb') as f:
+                        pldata = plistlib.load(f, fmt=plistlib.FMT_XML)
+                    for kext in pldata['Kernel']['Add']:
+                        with open('EFI/OC/Kexts/{}/{}'.format(kext['BundlePath'], kext['PlistPath']), 'rb') as fp:
+                            kextpldata = plistlib.load(fp, fmt=plistlib.FMT_XML)
+                        if kext['Comment'].split('|')[0].strip().replace('V', '') != kextpldata['CFBundleVersion']:
+                            isChanage = True
+                            kext['Comment'] = 'V' + kextpldata['CFBundleVersion'] if kext['Comment'].split('|')[-1].strip() == '' else 'V' + kextpldata['CFBundleVersion'] + ' | ' + kext['Comment'].split('|')[-1].strip()
+                    if isChanage == False:
+                        continue
+                    with open('EFI/OC/{}'.format(pf), 'wb') as f:
+                        plistlib.dump(pldata, f, fmt=plistlib.FMT_XML)
+            return 0
+        except:
+            print('Kexts version check error!')
+            return 1
 
     def update(self, version = 'ventura'):
 
@@ -366,6 +386,7 @@ if __name__ == '__main__':
         ret = u1.update(version = version)
 
     if ret == 0:
+        # u1.checkKextsVer() # 会改变格式，暂时未开启
         with open(date_last_file, mode="w") as f:
             f.write(datetime.datetime.now(tz=datetime.timezone.utc).isoformat())
     else:
