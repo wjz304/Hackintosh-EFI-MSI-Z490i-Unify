@@ -34,11 +34,11 @@ date_last = ''   # Forced
 
 
 class UpdateKexts():
-    def __init__(self, headers = None, alpha = True) -> None:
+    def __init__(self, headers = None) -> None:
         if headers is None:
             headers = {'user-agent': 'Python-urllib/3.0'}
         self.PM = urllib3.PoolManager(headers=headers)  # give github a user-agent so they don't block our requests
-        self.alpha = alpha
+        self.alpha = True
         self.kexts = [
             ['Lilu', 'EFI/OC/Kexts/Lilu.kext', 'Lilu.kext'],
             ['WhateverGreen', 'EFI/OC/Kexts/WhateverGreen.kext', 'WhateverGreen.kext'],
@@ -181,8 +181,8 @@ class UpdateKexts():
                         break
             break
         
-    def upgradeItlwm(self, version = 'ventura'):
-        print('upgrade {}'.format('AirportItlwm and itlwm'))
+    def upgradeItlwm(self, itver = 'ventura'):
+        print('upgrade {}'.format('AirportItlwm_{} and itlwm'.format(itver)))
         res = self.PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
         self.itlwm = json.loads(res.data.decode('utf-8'))
         for itlwmVer in self.itlwm:
@@ -190,7 +190,7 @@ class UpdateKexts():
                 continue
             if itlwmVer['published_at'] > date_last:
                 for item in itlwmVer['assets']:
-                    if version in item['name'].lower():
+                    if itver in item['name'].lower():
                         url = item['browser_download_url']
                         self.__dlExt(url, './tmp')
                         self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm.kext')
@@ -224,11 +224,13 @@ class UpdateKexts():
             break
 
 
-    def upgradeOC(self):
-        print('upgrade {}'.format('OpenCore_Mod'))
+    def upgradeOC(self, ocver = 'mod'):
+        print('upgrade {}'.format('OpenCore_{}'.format(ocver)))
         url = ''
-        if self.alpha is False:
-            url = 'https://api.github.com/repos/OlarilaHackintosh/OpenCore_NO_ACPI/releases'
+        if ocver == 'rel':
+            url = 'https://api.github.com/repos/acidanthera/OpenCorePkg/releases'
+        elif ocver == 'pre':
+            url = 'https://api.github.com/repos/dortania/build-repo/releases'
         else:
             url = 'https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases'
         res = self.PM.request('GET', url)
@@ -255,7 +257,7 @@ class UpdateKexts():
                             for efi in os.listdir('EFI/OC/Tools'):
                                 self.__xcopy('./tmp/X64/EFI/OC/Tools/{}'.format(efi), 'EFI/OC/Tools/{}'.format(efi))
 
-                        if os.path.exists('EFI/OC/Resources'):
+                        if ocver == 'mod' and os.path.exists('EFI/OC/Resources'):
                             background = ''
                             if os.path.exists('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns'):
                                 with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
@@ -291,102 +293,124 @@ class UpdateKexts():
             print('Kexts version check error!')
             return 1
 
-    def update(self, version = 'ventura'):
 
-        if self.alpha is True:
-            for kext in self.kexts:
-                try:
-                    self.upgradeDortaniaKexts(kext[0], kext[1], kext[2])
-                except:
-                    print('Dortania Kexts update error!')
-                    return 1
-        else:
-            for kext in self.kexts:
-                try:
-                    self.upgradeAcidantheraKexts(kext[0], kext[1], kext[2])
-                except:
-                    print('Dortania Kexts update error!')
-                    return 1
-            pass
-        
-        try:
-            self.upgradeItlwm(version)
-        except:
-            print('Itlwm Kexts update error!')
-            return 2
+    def update(self, ocver, itver, kever, ischanage = False):
+        if kever == 'stable':
+            self.alpha = False
 
-        try:
-            self.upgradeIBT()
-        except:
-            print('IBT Kexts update error!')
-            return 2
+        if ischanage == False or (ischanage == True and kever != ''):
+            if self.alpha is True:
+                for kext in self.kexts:
+                    try:
+                        self.upgradeDortaniaKexts(kext[0], kext[1], kext[2])
+                    except:
+                        print('Dortania Kexts update error!')
+                        return 1
+            else:
+                for kext in self.kexts:
+                    try:
+                        self.upgradeAcidantheraKexts(kext[0], kext[1], kext[2])
+                    except:
+                        print('Dortania Kexts update error!')
+                        return 1
 
-        try:
-            self.upgradeRTL8125E()
-        except:
-            print('RTL8125E Kexts update error!')
-            return 2
-            
-        try:
-            self.upgradeOC()
-        except:
-            print('OC update error!')
-            return 3
-        
+            try:
+                self.upgradeRTL8125E()
+            except:
+                print('RTL8125E Kexts update error!')
+                return 2
+                
+            try:
+                self.upgradeIBT()
+            except:
+                print('IBT Kexts update error!')
+                return 2
+
+        if ischanage == False or (ischanage == True and (itver != '' or kever != '')):
+            try:
+                self.upgradeItlwm(itver)
+            except:
+                print('Itlwm Kexts update error!')
+                return 2
+
+        if ischanage == False or (ischanage == True and ocver != ''):
+            try:
+                self.upgradeOC(ocver)
+            except:
+                print('Itlwm Kexts update error!')
+                return 3
+
         return 0
 
-    def chanageItlwm(self, version = 'ventura'):
-        try:
-            self.upgradeItlwm(version)
-        except:
-            print('Itlwm Kexts update error!')
-            return 2
-        return 0
+
+
+def help():
+    print('Usage: python3 update.py [options...]')
+    print('options: [-c] [-o <rel | pre | mod>] [-i <ventura | monterey | big_sur>] [-k <stable | alpha>] [-t <token>]')
+    print('-c, --chanage                                是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
+    print('-o, --ocver <rel | pre | mod>                指定OC的版本')
+    print('-i, --itlwm <ventura | monterey | big_sur>   指定intel网卡的版本')
+    print('-k, --kexts <stable | alpha>                 指定kext的版本')
+    print('-h, --help                                   显示帮助')
 
 
 if __name__ == '__main__':
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hsiv:t:",["stable", "itlwm","version=","token="])
+        opts, args = getopt.getopt(sys.argv[1:], "hco:i:k:t:",["help", "chanage", "ocver=", "itlwm=", "kexts=", "token="])
     except getopt.GetoptError:
-        print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>] [-t <token>]')
-        print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>] [--token <token>]')
+        help()
         sys.exit(9)
     
-    isitlwm = False
-    alpha = True
-    version = 'ventura'
+    isChanage = False
+    ocver = ''
+    itlwm = ''
+    kexts = ''
     token = None
+
     for opt, arg in opts:
-        if opt == '-h':
-            print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>] [-t <token>]')
-            print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>] [--token <token>]')
+        if opt == ("-h", "--help"):
+            help()
             sys.exit()
-        elif opt in ("-s", "--stable"):
-            alpha = False
-        elif opt in ("-i", "--itlwm"):
-            isitlwm = True
-        elif opt in ("-v", "--version"):
-            if not arg.lower() in ('ventura', 'monterey', 'big_sur'):
-                print('test.py [-s] [-i] [-v <ventura | monterey | bigsur>] [-t <token>]')
-                print('test.py [--stable] [--itlwm] [--version <ventura | monterey | bigsur>] [--token <token>]')
+        elif opt in ("-c", "--chanage"):
+            isChanage = True
+        elif opt in ("-o", "--ocver"):
+            if not arg.lower() in ('rel', 'pre', 'mod'):
+                help()
                 sys.exit()
             else:
-                version = arg.lower()
+                ocver = arg.lower()
+        elif opt in ("-i", "--itlwm"):
+            if not arg.lower() in ('ventura', 'monterey', 'big_sur'):
+                help()
+                sys.exit()
+            else:
+                itlwm = arg.lower()
+        elif opt in ("-k", "--kexts"):
+            if not arg.lower() in ('stable', 'alpha'):
+                help()
+                sys.exit()
+            else:
+                kexts = arg.lower()
         elif opt in ("-t", "--token"):
             token = arg
+
+    if isChanage is False:
+        if ocver == '':
+            ocver = 'mod'
+        if itlwm == '':
+            itlwm = 'ventura'
+        if kexts == '':
+            kexts = 'alpha'
 
     headers = None
     if token is not None:
         headers = { 'user-agent': 'Python-urllib/3.0', 'Authorization': 'token {}'.format(token) }
 
-    u1 = UpdateKexts(headers = headers, alpha = alpha)
-    if isitlwm is True:
-        ret = u1.chanageItlwm(version = version)
-    else:
-        ret = u1.update(version = version)
+    u1 = UpdateKexts(headers = headers)
+    ret = u1.update(ocver, itlwm, kexts, isChanage)
 
     if ret == 0:
-        # u1.checkKextsVer() # 会改变格式，暂时未开启
+        u1.checkKextsVer()    # This will change the format of plist file
         with open(date_last_file, mode="w") as f:
             f.write(datetime.datetime.now(tz=datetime.timezone.utc).isoformat())
     else:

@@ -3,11 +3,16 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'EFI/OC/**.plist'
+      - '!EFI/OC/Kexts/**'
   pull_request:
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'EFI/OC/**.plist'
+      - '!EFI/OC/Kexts/**'
+  workflow_dispatch:
+
+
 jobs:
   test-and-cover:
     runs-on: macos-latest
