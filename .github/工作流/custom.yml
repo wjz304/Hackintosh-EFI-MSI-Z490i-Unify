@@ -75,13 +75,13 @@ jobs:
 
       - name: Run Updater
         run: |
-        echo "OCVer: ${{ inputs.ocver }}" > custom.txt
-        echo "itlwm: ${{ inputs.itlwm }}" >> custom.txt
-        echo "kexts: ${{ inputs.kexts }}" >> custom.txt
+          echo "OCVer: ${{ inputs.ocver }}" > custom.txt
+          echo "itlwm: ${{ inputs.itlwm }}" >> custom.txt
+          echo "kexts: ${{ inputs.kexts }}" >> custom.txt
 
-        echo "tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
+          echo "tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
 
-        python3 -u update.py -o ${{ inputs.ocver }} -i ${{ inputs.itlwm }} -k ${{ inputs.kexts }} -t ${{ secrets.GITHUB_TOKEN }}
+          python3 -u update.py -o ${{ inputs.ocver }} -i ${{ inputs.itlwm }} -k ${{ inputs.kexts }} -t ${{ secrets.GITHUB_TOKEN }}
 
       - name: Zip EFI Ventura
         if: env.ischanges == 'true'
