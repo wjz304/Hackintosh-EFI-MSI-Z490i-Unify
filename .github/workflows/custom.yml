@@ -79,16 +79,21 @@ jobs:
           echo "itlwm: ${{ inputs.itlwm }}" >> custom.txt
           echo "kexts: ${{ inputs.kexts }}" >> custom.txt
 
-          echo "tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
-
           python3 -u update.py -o ${{ inputs.ocver }} -i ${{ inputs.itlwm }} -k ${{ inputs.kexts }} -t ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Zip EFI Ventura
+      - name: Generate release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+          echo "::set-output name=status::success"
+          echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
+
+      - name: Zip EFI
         uses: vimtor/action-zip@v1
         with:
           files: EFI README.md custom.txt
           recursive: false
-          dest: ${{ steps.tag.outputs.repository_name }}-Custom-${{ env.status }}.zip
+          dest: ${{ steps.tag.outputs.repository_name }}-Custom-${{ steps.tag.outputs.release_tag }}.zip
 
       - name: Upload to Artifacts
         uses: actions/upload-artifact@v3
