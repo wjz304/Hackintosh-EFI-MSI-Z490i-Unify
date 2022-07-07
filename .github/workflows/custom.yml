@@ -84,7 +84,6 @@ jobs:
           python3 -u update.py -o ${{ inputs.ocver }} -i ${{ inputs.itlwm }} -k ${{ inputs.kexts }} -t ${{ secrets.GITHUB_TOKEN }}
 
       - name: Zip EFI Ventura
-        if: env.ischanges == 'true'
         uses: vimtor/action-zip@v1
         with:
           files: EFI README.md custom.txt
