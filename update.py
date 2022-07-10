@@ -319,7 +319,7 @@ class UpdateKexts():
             except:
                 print('RTL8125E Kexts update error!')
                 return 2
-                
+
             try:
                 self.upgradeIBT()
             except:
@@ -337,7 +337,7 @@ class UpdateKexts():
             try:
                 self.upgradeOC(ocver)
             except:
-                print('Itlwm Kexts update error!')
+                print('OC update error!')
                 return 3
 
         return 0

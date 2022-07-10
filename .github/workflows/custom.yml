@@ -88,15 +88,9 @@ jobs:
           echo "::set-output name=status::success"
           echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
 
-      - name: Zip EFI
-        uses: vimtor/action-zip@v1
-        with:
-          files: EFI README.md custom.txt
-          recursive: false
-          dest: ${{ steps.tag.outputs.repository_name }}-Custom-${{ steps.tag.outputs.release_tag }}.zip
 
       - name: Upload to Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Custom EFI
-          path: Hackintosh*.zip
+          name: ${{ steps.tag.outputs.repository_name }}-Custom-${{ steps.tag.outputs.release_tag }}
+          path: EFI README.md custom.txt
