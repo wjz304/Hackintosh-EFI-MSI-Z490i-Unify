@@ -93,4 +93,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.tag.outputs.repository_name }}-Custom-${{ steps.tag.outputs.release_tag }}
-          path: EFI README.md custom.txt
+          path: |
+            EFI
+            README.md
+            custom.txt
