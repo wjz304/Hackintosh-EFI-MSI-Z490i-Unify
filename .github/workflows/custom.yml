@@ -8,6 +8,8 @@
 
 name: Custom EFI
 on:
+  issues:
+    types: [opened]
   workflow_dispatch:
     inputs:
       ocver:
@@ -62,18 +64,114 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
 
+      - name: Get Info
+        run: |
+          if [ ${{ github.event_name }} == 'issues' ]; then
+            # https://docs.github.com/cn/rest/issues/events
+            
+            echo "issues=true" >> $GITHUB_ENV
+            title=$(echo ${{ github.event.issue.title }} | tr '[:upper:]' '[:lower:]')
+            if [ ${title:0:6} == 'custom' ]; then
+              echo "iscustom=true" >> $GITHUB_ENV
+              echo "ocver=$(echo '${{ github.event.issue.body }}' | jq -r .ocver)" >> $GITHUB_ENV
+              echo "itlwm=$(echo '${{ github.event.issue.body }}' | jq -r .itlwm)" >> $GITHUB_ENV
+              echo "kexts=$(echo '${{ github.event.issue.body }}' | jq -r .kexts)" >> $GITHUB_ENV
+            else
+              echo "iscustom=false" >> $GITHUB_ENV
+              echo "ocver=${{ inputs.ocver }}" >> $GITHUB_ENV
+              echo "itlwm=${{ inputs.itlwm }}" >> $GITHUB_ENV
+              echo "kexts=${{ inputs.kexts }}" >> $GITHUB_ENV
+            fi
+          else
+            echo "issues=false" >> $GITHUB_ENV
+            echo "iscustom=false" >> $GITHUB_ENV
+            echo "ocver=${{ inputs.ocver }}" >> $GITHUB_ENV
+            echo "itlwm=${{ inputs.itlwm }}" >> $GITHUB_ENV
+            echo "kexts=${{ inputs.kexts }}" >> $GITHUB_ENV
+          fi
+
+          echo issues: ${{ env.issues }}
+          echo iscustom: ${{ env.iscustom }}
+          echo ocver: ${{ env.ocver }}
+          echo itlwm: ${{ env.itlwm }}
+          echo kexts: ${{ env.kexts }}
+
+      - name: Add labels
+        if: env.iscustom == 'true'
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'add-labels'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          labels: 'custom'
+
+      - name: Check Info
+        run: |
+          ret=true
+          if [ ${{ env.iscustom }} == 'true' ]; then
+            ARR=(rel pre mod)
+            if [ ${ARR[@]} != ${{ inputs.ocver }} ]; then
+                ret=false
+            fi
+            ARR=(ventura monterey big_sur)
+            if [ ${ARR[@]} != ${{ inputs.itlwm }} ]; then
+                ret=false
+            fi
+            ARR=(stable alpha)
+            if [ ${ARR[@]} != ${{ inputs.kexts }} ]; then
+                ret=false
+            fi
+          fi
+
+          echo "isstatus=${ret}" >> $GITHUB_ENV
+
+      - name: Create comment
+        if: env.iscustom == 'true' && env.isstatus == 'true'
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'create-comment'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ${{ github.event.issue.user.login }} 您好.
+            您自定义的 EFI 已开始构建。请前往下面的 URL 查看详细信息。
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            ----
+            Hello ${{ github.event.issue.user.login }}. 
+            Your customized EFI has started building. Please click the URL below to view the details.
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          emoji: heart
+
+      - name: Create comment
+        if: env.iscustom == 'true' && env.isstatus == 'false'
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'create-comment'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ${{ github.event.issue.user.login }} 您好.
+            您自定义 EFI 所填写的信息无法解析, 请参考模板并请重新发起定制。  
+            ----
+            Hello ${{ github.event.issue.user.login }}. 
+            The information filled in by your customized EFI cannot be parsed. Please refer to the template and restart customization.
+          emoji: confused
+
       - name: Initialization environment
+        if: env.isstatus == 'true'
         run : |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           sudo systemsetup -settimezone "Asia/Shanghai"
 
       - name: Install Python Dependencies
+        if: env.isstatus == 'true'
         run: |
           python3 -m pip install -U pip
           pip3 install datetime urllib3 wget
 
       - name: Run Updater
+        if: env.isstatus == 'true'
         run: |
           echo "OCVer: ${{ inputs.ocver }}" > custom.txt
           echo "itlwm: ${{ inputs.itlwm }}" >> custom.txt
@@ -82,14 +180,21 @@ jobs:
           python3 -u update.py -o ${{ inputs.ocver }} -i ${{ inputs.itlwm }} -k ${{ inputs.kexts }} -t ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate release tag
+        if: env.isstatus == 'true'
         id: tag
         run: |
+          echo "### EFI Custom" >> $GITHUB_STEP_SUMMARY
+          if [ ${{ env.iscustom }} == 'true' ]; then
+            echo "👉 issues: [#${{ github.event.issue.number }}]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/issues/${{ github.event.issue.number }})" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "👉 Custom: {ocver: ${{ env.ocver }}, itlwm: ${{ env.itlwm }}, kexts: ${{ env.kexts }}}" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-          echo "::set-output name=status::success"
           echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
 
 
       - name: Upload to Artifacts
+        if: env.isstatus == 'true'
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.tag.outputs.repository_name }}-Custom-${{ steps.tag.outputs.release_tag }}
@@ -97,3 +202,28 @@ jobs:
             EFI
             README.md
             custom.txt
+
+      - name: Create comment
+        if: env.iscustom == 'true' && env.isstatus == 'true'
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'create-comment'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ${{ github.event.issue.user.login }} 您好.
+            您自定义的 EFI 已构建完成。请前往下面的 URL 下载。
+            > ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}  
+            ----
+            Hello ${{ github.event.issue.user.login }}. 
+            Your customized EFI has been builded. Please click the URL below to download it.
+            > ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          emoji: hooray
+
+      - name: Close issue
+        if: env.iscustom == 'true'
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'close-issue'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
