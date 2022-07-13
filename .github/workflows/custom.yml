@@ -135,11 +135,11 @@ jobs:
           body: |
             ${{ github.event.issue.user.login }} 您好.
             您自定义的 EFI 已开始构建。请前往下面的 URL 查看详细信息。
-            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            > ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             ----
             Hello ${{ github.event.issue.user.login }}. 
             Your customized EFI has started building. Please click the URL below to view the details.
-            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            > ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           emoji: heart
 
       - name: Create comment
@@ -152,9 +152,11 @@ jobs:
           body: |
             ${{ github.event.issue.user.login }} 您好.
             您自定义 EFI 所填写的信息无法解析, 请参考模板并请重新发起定制。  
+            > 
             ----
             Hello ${{ github.event.issue.user.login }}. 
             The information filled in by your customized EFI cannot be parsed. Please refer to the template and restart customization.
+            > 
           emoji: confused
 
       - name: Initialization environment
