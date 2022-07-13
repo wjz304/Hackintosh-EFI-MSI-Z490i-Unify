@@ -32,7 +32,7 @@ downloads
 
 * release: 稳定版本。
 * prerelease: 每天自动更新kext和OC, 可能存在未知问题。如无必要请使用 release 版本。
-* 如果需要 BigSur版本，或者需要原版OC，可通过 Actions 中的 custom 自动构建打包。  
+* 如果需要 BigSur版本，或者需要原版OC，可参考 [Custom #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/34) 自动构建打包。  
 
 ## 配置  
  规格     | 详细信息
