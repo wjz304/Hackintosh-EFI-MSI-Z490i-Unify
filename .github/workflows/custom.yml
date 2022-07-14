@@ -72,19 +72,36 @@ jobs:
             echo "issues=true" >> $GITHUB_ENV
             title=$(echo ${{ github.event.issue.title }} | tr '[:upper:]' '[:lower:]')
             if [ ${title:0:6} == 'custom' ]; then
-              echo "iscustom=true" >> $GITHUB_ENV
-              echo "ocver=$(echo '${{ github.event.issue.body }}' | jq -r .ocver)" >> $GITHUB_ENV
-              echo "itlwm=$(echo '${{ github.event.issue.body }}' | jq -r .itlwm)" >> $GITHUB_ENV
-              echo "kexts=$(echo '${{ github.event.issue.body }}' | jq -r .kexts)" >> $GITHUB_ENV
+              iscustom=true
+              ocver=$(echo '${{ github.event.issue.body }}' | jq -r .ocver)
+              itlwm=$(echo '${{ github.event.issue.body }}' | jq -r .itlwm)
+              kexts=$(echo '${{ github.event.issue.body }}' | jq -r .kexts)
+              
+              ARR=(rel pre mod)
+              if [ ${ARR[@]} != ${ocver} ]; then
+                  iscustom=false
+              fi
+              ARR=(ventura monterey big_sur)
+              if [ ${ARR[@]} != ${itlwm} ]; then
+                  iscustom=false
+              fi
+              ARR=(stable alpha)
+              if [ ${ARR[@]} != ${kexts} ]; then
+                  iscustom=false
+              fi
+
+              echo "iscustom=${iscustom}" >> $GITHUB_ENV
+              if [ ${iscustom} == 'true' ]; then
+                echo "ocver=${ocver}" >> $GITHUB_ENV
+                echo "itlwm=${itlwm}" >> $GITHUB_ENV
+                echo "kexts=${kexts}" >> $GITHUB_ENV
+              fi
             else
               echo "iscustom=false" >> $GITHUB_ENV
-              echo "ocver=${{ inputs.ocver }}" >> $GITHUB_ENV
-              echo "itlwm=${{ inputs.itlwm }}" >> $GITHUB_ENV
-              echo "kexts=${{ inputs.kexts }}" >> $GITHUB_ENV
             fi
           else
             echo "issues=false" >> $GITHUB_ENV
-            echo "iscustom=false" >> $GITHUB_ENV
+            echo "iscustom=true" >> $GITHUB_ENV
             echo "ocver=${{ inputs.ocver }}" >> $GITHUB_ENV
             echo "itlwm=${{ inputs.itlwm }}" >> $GITHUB_ENV
             echo "kexts=${{ inputs.kexts }}" >> $GITHUB_ENV
@@ -97,7 +114,7 @@ jobs:
           echo kexts: ${{ env.kexts }}
 
       - name: Add labels
-        if: env.iscustom == 'true'
+        if: env.issues == 'true' && env.iscustom == 'true'
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'add-labels'
@@ -105,28 +122,8 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           labels: 'custom'
 
-      - name: Check Info
-        run: |
-          ret=true
-          if [ ${{ env.iscustom }} == 'true' ]; then
-            ARR=(rel pre mod)
-            if [ ${ARR[@]} != ${{ inputs.ocver }} ]; then
-                ret=false
-            fi
-            ARR=(ventura monterey big_sur)
-            if [ ${ARR[@]} != ${{ inputs.itlwm }} ]; then
-                ret=false
-            fi
-            ARR=(stable alpha)
-            if [ ${ARR[@]} != ${{ inputs.kexts }} ]; then
-                ret=false
-            fi
-          fi
-
-          echo "isstatus=${ret}" >> $GITHUB_ENV
-
       - name: Create comment
-        if: env.iscustom == 'true' && env.isstatus == 'true'
+        if: env.issues == 'true' && env.iscustom == 'true'
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'create-comment'
@@ -143,7 +140,7 @@ jobs:
           emoji: heart
 
       - name: Create comment
-        if: env.iscustom == 'true' && env.isstatus == 'false'
+        if: env.issues == 'true' && env.iscustom == 'false'
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'create-comment'
@@ -160,20 +157,20 @@ jobs:
           emoji: confused
 
       - name: Initialization environment
-        if: env.isstatus == 'true'
+        if: env.issues == 'false' || env.iscustom == 'true'
         run : |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           sudo systemsetup -settimezone "Asia/Shanghai"
 
       - name: Install Python Dependencies
-        if: env.isstatus == 'true'
+        if: env.issues == 'false' || env.iscustom == 'true'
         run: |
           python3 -m pip install -U pip
           pip3 install datetime urllib3 wget
 
       - name: Run Updater
-        if: env.isstatus == 'true'
+        if: env.issues == 'false' || env.iscustom == 'true'
         run: |
           echo "OCVer: ${{ inputs.ocver }}" > custom.txt
           echo "itlwm: ${{ inputs.itlwm }}" >> custom.txt
@@ -182,7 +179,7 @@ jobs:
           python3 -u update.py -o ${{ inputs.ocver }} -i ${{ inputs.itlwm }} -k ${{ inputs.kexts }} -t ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate release tag
-        if: env.isstatus == 'true'
+        if: env.issues == 'false' || env.iscustom == 'true'
         id: tag
         run: |
           echo "### EFI Custom" >> $GITHUB_STEP_SUMMARY
@@ -196,7 +193,7 @@ jobs:
 
 
       - name: Upload to Artifacts
-        if: env.isstatus == 'true'
+        if: env.issues == 'false' || env.iscustom == 'true'
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.tag.outputs.repository_name }}-Custom-${{ steps.tag.outputs.release_tag }}
@@ -206,7 +203,7 @@ jobs:
             custom.txt
 
       - name: Create comment
-        if: env.iscustom == 'true' && env.isstatus == 'true'
+        if: env.issues == 'true' && env.iscustom == 'true'
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'create-comment'
@@ -223,7 +220,7 @@ jobs:
           emoji: hooray
 
       - name: Close issue
-        if: env.iscustom == 'true'
+        if: env.issues == 'true' && env.iscustom == 'true'
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'close-issue'
