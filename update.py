@@ -258,16 +258,24 @@ class UpdateKexts():
                             for efi in os.listdir('EFI/OC/Tools'):
                                 self.__xcopy('./tmp/X64/EFI/OC/Tools/{}'.format(efi), 'EFI/OC/Tools/{}'.format(efi))
 
-                        if ocver == 'mod' and os.path.exists('EFI/OC/Resources'):
-                            background = ''
-                            if os.path.exists('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns'):
-                                with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
-                                    background = f.read()
-                            self.__xcopy('./tmp/X64/EFI/OC/Resources', 'EFI/OC/Resources', ignore = shutil.ignore_patterns('.*'))
-                            os.remove('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns')
-                            if background != '':
-                                with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
-                                    f.write(background)
+                        if os.path.exists('EFI/OC/Resources') and os.path.exists('./tmp/X64/EFI/OC/Resources'):
+                            if os.path.exists('./tmp/X64/EFI/OC/Resources/Audio') and len(os.listdir('./tmp/X64/EFI/OC/Resources/Audio')) > 0:
+                                self.__xcopy('./tmp/X64/EFI/OC/Resources/Audio', 'EFI/OC/Resources/Audio', ignore = shutil.ignore_patterns('.*'))
+                            if os.path.exists('./tmp/X64/EFI/OC/Resources/Font') and len(os.listdir('./tmp/X64/EFI/OC/Resources/Font')) > 0:
+                                self.__xcopy('./tmp/X64/EFI/OC/Resources/Font', 'EFI/OC/Resources/Font', ignore = shutil.ignore_patterns('.*'))
+                            if os.path.exists('./tmp/X64/EFI/OC/Resources/Label') and len(os.listdir('./tmp/X64/EFI/OC/Resources/Label')) > 0:
+                                self.__xcopy('./tmp/X64/EFI/OC/Resources/Label', 'EFI/OC/Resources/Label', ignore = shutil.ignore_patterns('.*'))
+                            if os.path.exists('./tmp/X64/EFI/OC/Resources/Image') and len(os.listdir('./tmp/X64/EFI/OC/Resources/Image')) > 0:
+                                background = ''
+                                if os.path.exists('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns'):
+                                    with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
+                                        background = f.read()
+                                self.__xcopy('./tmp/X64/EFI/OC/Resources/Image', 'EFI/OC/Resources/Image', ignore = shutil.ignore_patterns('.*'))
+                                os.remove('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns')
+                                if background != '':
+                                    with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
+                                        f.write(background)
+
                         shutil.rmtree('./tmp')
                         break
             break
