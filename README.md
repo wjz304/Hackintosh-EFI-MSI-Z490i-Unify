@@ -6,7 +6,7 @@
 
 ## 说明  
 MSI-Z490i-Unify 的黑苹果 EFI  
-当前支持 Ventura 13.0(b)
+当前支持 Monterey 12(b) 和 Ventura 13(b)
 <!--
 downloads
 <a href="https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/releases">
@@ -32,7 +32,7 @@ downloads
 
 * release: 稳定版本。
 * prerelease: 每天自动更新kext和OC, 可能存在未知问题。如无必要请使用 release 版本。
-* 如果需要 BigSur版本，或者需要原版OC，可参考 [Custom #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/34) 自动构建打包。  
+* 如果需要 BigSur版本，或者需要原版OC，可参考 Custom [#25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/34) 自动构建打包。  
 
 ## 配置  
  规格     | 详细信息
@@ -91,17 +91,12 @@ downloads
 	- ###### `sudo ifconfig en0 media 100baseTX mediaopt full-duplex`  
 
  5. 无线网卡 & 蓝牙：  
-	BigSur：请替换 BigSur 的 AirportItlwm.kext。  
-	Monterey：请替换 Monterey 的 AirportItlwm.kext。 
-
+	BigSur：请参考 Custom [#25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/34) 自动构建打包。  
 	注：  
 	1. 目前 Ventura 下 BT 的 LPM [（如何查看LPM版本）](https://support.microsoft.com/en-us/windows/what-bluetooth-version-is-on-my-pc-f5d4cff7-c00d-337b-a642-d2d23b082793)  为11的版本貌似无法正常运行，介意请勿升级Ventura。 
 	2. 如果Wifi/BT无法打开请尝试执行一下 `sudo kextcache -i /` 关机再开机(不要重启)。  
 	3. 另外 偶现开启 "-v"(啰嗦模式) 无线网卡不工作的问题，请尝试关闭 "-v" (boot-args 属性中删除 -v )。  
 	
-
-
-
  6. 关于 Safari 不能看 Prime/Netflix 的问题。  
 	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
 
