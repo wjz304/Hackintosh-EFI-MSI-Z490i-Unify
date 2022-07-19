@@ -43,7 +43,7 @@ downloads
  内存     | 64 GB ( 海盗船 DDR4 3200MHz )
  硬盘     | 西数 WDS100T3X0C-00SJG0 SN750 ( 1 TB / 固态硬盘 )
  显卡     | AMD Radeon RX 5700 XT ( 8 GB / 蓝宝石 )
- 无线网卡  | 英特尔® Wi-Fi 6 AX201 ( 板载 )
+ 无线网卡 | 英特尔® Wi-Fi 6 AX201 ( 板载 )
  声卡     | Realtek ALC S1220A
  触摸板   |
  触摸屏   |
@@ -51,14 +51,13 @@ downloads
 
 ## BIOS
 ||||
---|----------------------------------------|-----------
-1 |Setting\高级\内建显示配置\集成显卡多显示器| [允许]
-2 |Setting\高级\整合周边设备\网络协议栈      | [允许]
-3 |OC\扩展内存预设技术(XMP)                 | [Enabled]
-4 |OC\CPU Features\CFG Lock                | [Disabled]
-  |                                        | 
-5 |Security Device Support                 | [Enabled] （Win11 - TPM 2.0）
-
+--|-------------------------------------------|-----------
+1 |Setting\高级\内建显示配置\集成显卡多显示器 | [允许]
+2 |Setting\高级\整合周边设备\网络协议栈       | [允许]
+3 |OC\扩展内存预设技术(XMP)                   | [Enabled]
+4 |OC\CPU Features\CFG Lock                   | [Disabled]
+5 |Security Device Support                    | [Enabled] （Win11 - TPM 2.0）
+6 |Settings\Security\Secure Boot              | [Disabled] （BIOS Ver ≥ 1C0）
 
 ***或者使用微星主板自带的 D.T.M 功能，一键开启黑苹果所需设置。***  
 *[参考附件 screenshot/MSI_SnapShot_微星一键黑苹果.bmp]*  
