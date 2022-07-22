@@ -197,7 +197,7 @@ class UpdateKexts():
                     if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
                         url = item['browser_download_url']
                         self.__dlExt(url, './tmp')
-                        self.__xcopy('./tmp/ECEnabler.kext', 'EFI/OC/Kexts/ECEnabler.kext')
+                        self.__xcopy('./tmp/{}/Release/LucyRTL8125Ethernet.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/LucyRTL8125Ethernet.kext')
                         shutil.rmtree('./tmp')
                         break
             break
