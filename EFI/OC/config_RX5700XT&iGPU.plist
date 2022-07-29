@@ -549,7 +549,7 @@
 				<key>BundlePath</key>
 				<string>itlwm.kext</string>
 				<key>Comment</key>
-				<string>V2.2.0 | 3rd Wi-Fi</string>
+				<string>V2.1.0 | 3rd Wi-Fi</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -585,7 +585,7 @@
 				<key>BundlePath</key>
 				<string>AirportItlwm-monterey.kext</string>
 				<key>Comment</key>
-				<string>V2.2.0 | 12 Wi-Fi</string>
+				<string>V2.1.0 | 12 Wi-Fi</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
