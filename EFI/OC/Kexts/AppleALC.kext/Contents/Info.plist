@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>20G630</string>
+	<string>21F79</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -7436,7 +7436,7 @@
 					<key>ConfigData</key>
 					<data>
 					AgUAGwIETksCBQBFAgRSiQGXHEABlx0QAZce
-					gQGXHwE=
+					pwGXHwA=
 					</data>
 					<key>FuncGroup</key>
 					<integer>1</integer>
@@ -7444,7 +7444,7 @@
 					<integer>15</integer>
 					<key>WakeConfigData</key>
 					<data>
-					AXcMAg==
+					AXcMAgGXByQ=
 					</data>
 					<key>WakeVerbReinit</key>
 					<true/>
