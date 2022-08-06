@@ -355,7 +355,7 @@
 				<key>BundlePath</key>
 				<string>Lilu.kext</string>
 				<key>Comment</key>
-				<string>V1.6.2 | Patch engine</string>
+				<string>V1.6.3 | Patch engine</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -373,7 +373,7 @@
 				<key>BundlePath</key>
 				<string>VirtualSMC.kext</string>
 				<key>Comment</key>
-				<string>V1.3.0 | Advanced SMC emulation</string>
+				<string>V1.3.1 | Advanced SMC emulation</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -391,7 +391,7 @@
 				<key>BundlePath</key>
 				<string>SMCProcessor.kext</string>
 				<key>Comment</key>
-				<string>V1.3.0 | VirtualSMC Plugin</string>
+				<string>V1.3.1 | VirtualSMC Plugin</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -409,7 +409,7 @@
 				<key>BundlePath</key>
 				<string>SMCSuperIO.kext</string>
 				<key>Comment</key>
-				<string>V1.3.0 | VirtualSMC Plugin</string>
+				<string>V1.3.1 | VirtualSMC Plugin</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -445,7 +445,7 @@
 				<key>BundlePath</key>
 				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
-				<string>V1.6.1 | Various patches necessary for GPUs</string>
+				<string>V1.6.2 | Various patches necessary for GPUs</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -463,7 +463,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string>V1.7.4 | Audio patches</string>
+				<string>V1.7.5 | Audio patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -607,7 +607,7 @@
 				<key>BundlePath</key>
 				<string>BlueToolFixup.kext</string>
 				<key>Comment</key>
-				<string>V2.6.3 | 12 BT</string>
+				<string>V2.6.4 | 12 BT</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
