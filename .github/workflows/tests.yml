@@ -19,13 +19,28 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: brokeyourbike/ocvalidate-action@v0.2
-        with:
-          opencore-version: '0.8.1'
-          release: true
+      #- uses: brokeyourbike/ocvalidate-action@v0.2
+      #  with:
+      #    opencore-version: '0.8.1'
+      #    release: true
+      #
+      #- run: |
+      #    ocvalidate "EFI/OC/config.plist" || exit 1
+      #    ocvalidate "EFI/OC/config_iGPU.plist" || exit 1
+      #    ocvalidate "EFI/OC/config_RX5700XT.plist" || exit 1
+      #    ocvalidate "EFI/OC/config_RX5700XT&iGPU.plist" || exit 1
+
+      - name: Get OC-Mod
+        run: |
+          sudo apt update
+          sudo apt install curl jq -y
+
+          ocmoddlurl=$(curl -s --location "https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases/latest" | jq -r .assets[1].browser_download_url)
+          curl -L ${ocmoddlurl} -o ocmod.zip
+          unzip ocmod.zip -d ocmod
 
       - run: |
-          ocvalidate "EFI/OC/config.plist" || exit 1
-          ocvalidate "EFI/OC/config_iGPU.plist" || exit 1
-          ocvalidate "EFI/OC/config_RX5700XT.plist" || exit 1
-          ocvalidate "EFI/OC/config_RX5700XT&iGPU.plist" || exit 1
+          ocmod/Utilities/ocvalidate/ocvalidate "EFI/OC/config.plist" || exit 1
+          ocmod/Utilities/ocvalidate/ocvalidate "EFI/OC/config_iGPU.plist" || exit 1
+          ocmod/Utilities/ocvalidate/ocvalidate "EFI/OC/config_RX5700XT.plist" || exit 1
+          ocmod/Utilities/ocvalidate/ocvalidate "EFI/OC/config_RX5700XT&iGPU.plist" || exit 1
