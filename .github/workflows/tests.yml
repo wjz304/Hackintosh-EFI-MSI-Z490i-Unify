@@ -1,15 +1,6 @@
 name: tests
 on:
   push:
-    branches:
-      - master
-    paths:
-      - 'EFI/OC/**.plist'
-      - '!EFI/OC/Kexts/**'
-  pull_request:
-    paths:
-      - 'EFI/OC/**.plist'
-      - '!EFI/OC/Kexts/**'
   workflow_dispatch:
 
 
