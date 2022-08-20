@@ -53,6 +53,7 @@ class UpdateKexts():
             ['BrcmPatchRAM', 'EFI/OC/Kexts/BlueToolFixup.kext', 'BlueToolFixup.kext'],
             # ['IntelBluetoothInjector', 'EFI/OC/Kexts/IntelBluetoothInjector.kext', 'IntelBluetoothInjector.kext'],
             # ['IntelBluetoothFirmware', 'EFI/OC/Kexts/IntelBluetoothFirmware.kext', 'IntelBluetoothFirmware.kext'],
+            # ['IntelBTPatcher', 'EFI/OC/Kexts/IntelBTPatcher.kext', 'IntelBTPatcher.kext'],
         ]
         self.dortaniaKextsJson = None
 
@@ -340,6 +341,7 @@ class UpdateKexts():
                         self.__dlExt(url, './tmp')
                         self.__xcopy('./tmp/IntelBluetoothFirmware.kext', 'EFI/OC/Kexts/IntelBluetoothFirmware.kext')
                         self.__xcopy('./tmp/IntelBluetoothInjector.kext', 'EFI/OC/Kexts/IntelBluetoothInjector.kext')
+                        self.__xcopy('./tmp/IntelBTPatcher.kext', 'EFI/OC/Kexts/IntelBTPatcher.kext')
                         shutil.rmtree('./tmp')
                         break
             break
