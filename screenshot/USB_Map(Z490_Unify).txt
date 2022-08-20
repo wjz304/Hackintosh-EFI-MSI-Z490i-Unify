@@ -1,0 +1,35 @@
+PCI#VEN_8086&DEV_06ED
+    3-1 蓝1 usb2 0x19 (Port 25)
+    3-2 蓝2 usb2 0x1A (Port 26)
+    3-3 前c? usb2 0x13 (Port 19)
+    3-4 前c usb2 0x14 (Port 20)
+    3-5-1 红1 usb2 0x11 (Port 17)
+    3-5-2 红2 usb2 0x12 (Port 18)
+    3-5-3 黑1 usb2 
+    3-5-4 黑2 usb2 
+
+    3-7 前蓝1 usb2 0x16 (Port 22) 
+    3-8 前蓝2 usb2 0x15 (Port 21) 
+
+    3-9-3 Bluetooth USB Host Controller
+
+
+
+    3-12 9pin 水冷
+    3-13 灯效
+    3-14 蓝牙
+
+PCI#VEN_1B21&DEV_3241
+	1-1 type-c 3.2 
+
+
+
+
+
+
+
+
+
+
+
+
