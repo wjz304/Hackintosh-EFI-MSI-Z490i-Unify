@@ -5,7 +5,7 @@
 
 
 ## 说明  
-MSI-Z490i-Unify 的黑苹果 EFI  
+MSI-Z490i-Unify 的黑苹果 EFI  (Z490 UNIFY 兼容)  
 当前支持 Monterey 12(b) 和 Ventura 13(b)
 <!--
 downloads
@@ -67,7 +67,8 @@ downloads
     #### config.plist（默认）：   
 	- 为核显加速且未指定独显的版本，（因为在有独显情况下开核显会导致启动卡40s左右，单核显版不卡。）  
     #### config_iGPU.plist： 
-	- 为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面和音频正常(HDMI和DP共存时，只能HDMI输出音频)。
+	- 为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面和音频正常(HDMI和DP共存时，只能HDMI输出音频)。  
+	  NVIDIA卡请使用该plist，并在 boot-args 属性中加入 -wegnoegpu 屏蔽独显。
 	#### config_RX5700XT.plist： 
 	- 为RX5700XT优化核显加速版本，RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 	#### config_RX5700XT&iGPU.plist： 
@@ -78,46 +79,41 @@ downloads
  3. 关于USB：  
  	USBPorts_9pin.kext 为不包含主板的 Type-E 接口的版本。（默认）    
 	USBPorts_typee.kext 为不包含主板的 9pin 接口的版本。  
+	USBPorts_Z490_beta.kext 为Z490 UNIFY (non-i)版本，仅定制部分USB满足安装和日常使用，(感谢网友（SUNN）提供USB MAP信息)。  
 	直接拷贝替换 USBPorts.kext 即可。  
 
- 4. 有线网卡：  
-    表现为网络中以太网显示电缆被拔出，无信号。  
-	需要 高级--硬件--设置速度和双工，  
-		速度：根据你的路由器来，如果是百兆的口，就选100，千兆的选1000。  
-		双工：选节能以太网，如果还是不行，换其它的。  
-	###### `可通过终端使用命令设置：`  
-	- ###### `sudo ifconfig en0 media 1000baseT mediaopt full-duplex`  
-	- ###### `sudo ifconfig en0 media 100baseTX mediaopt full-duplex`  
-
- 5. 无线网卡 & 蓝牙：  
+ 4. 无线网卡 & 蓝牙：  
 	BigSur：请参考 Custom [#25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/34) 自动构建打包。  
 	注：  
-	1. 目前 Ventura 下 BT 的 LPM [（如何查看LPM版本）](https://support.microsoft.com/en-us/windows/what-bluetooth-version-is-on-my-pc-f5d4cff7-c00d-337b-a642-d2d23b082793)  为11的版本貌似无法正常运行，介意请勿升级Ventura。 
-	2. 如果Wifi/BT无法打开请尝试执行一下 `sudo kextcache -i /` 关机再开机(不要重启)。  
-	3. 另外 偶现开启 "-v"(啰嗦模式) 无线网卡不工作的问题，请尝试关闭 "-v" (boot-args 属性中删除 -v )。  
+	1. 如果Wifi/BT无法打开请尝试执行一下 `sudo kextcache -i /` 关机再开机(不要重启)。  
+	2. 另外 偶现开启 "-v"(啰嗦模式) 无线网卡不工作的问题，请尝试关闭 "-v" (boot-args 属性中删除 -v )。
+	3. 出场批次不同 BT 的 LPM [（如何查看LPM版本）](https://support.microsoft.com/en-us/windows/what-bluetooth-version-is-on-my-pc-f5d4cff7-c00d-337b-a642-d2d23b082793) 的版本不同，   
+	   LPM为11的版本Ventura下需要集成 IntelBTPatcher.kext。（默认已加，非11版本可以取消勾选）   
 	
- 6. 关于 Safari 不能看 Prime/Netflix 的问题。  
-	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。
+ 5. 关于 Safari 不能看 Prime/Netflix 的问题。  
+	请尝试修改机型为 iMacPro1,1 并删除集显注入 DeviceProperties -> PciRoot(0x0)/Pci(0x2,0x0) 部分。  
 
- 7. 如果使用 Samsung PM981 型号 会报 IONVMe 错误。  
+ 6. 如果使用 Samsung PM981 型号 会报 IONVMe 错误。  
     如果使用 Samsung 960 Evo/Pro 970 Evo/Pro 无故死机，启动很慢，可以尝试重装解决，或者尝试修改 SetApfsTrimTimeout 为 0（关闭trim，进入OS后可用 sensei软件 或者 sudo trimforce enable 命令 打开）。  
 	但是仍然建议更换非三星硬盘。  
 	###### `log show --last boot | grep "trims took"`  
 	- ###### `980 Pro：kernel: (apfs) spaceman_scan_free_blocks:3154: disk1 scan took 212.092312 s, trims took 212.054291 s`  
 	- ###### `SN750：kernel: (apfs) spaceman_scan_free_blocks:3153: disk1 scan took 0.319178 s, trims took 0.313471 s`
  
- 8. 关于休眠：  
+ 7. 关于休眠：  
 	请使用 命令或者 Hackintool 修复休眠模式 hibernatemode 和 proximitywake。  
 	如果唤醒弹窗 “电脑关机是因为发生了问题” ，请前往 “控制台” 删除 “诊断报告” 中所有日志。（主要是 “Sleep Wake Failure” 相关的）  
-	另外BIOS 可开启 “PCIE设备唤醒” 和 “网络唤醒”，将支持键鼠唤醒。（不要开启 USB Standby Power at S4/S5）
+	另外BIOS 可开启 “PCIE设备唤醒” 和 “网络唤醒”，将支持键鼠唤醒。（不要开启 USB Standby Power at S4/S5）  
 	
+	PS： 
+	* 感谢 [maoxikun](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/40) 对睡眠唤醒后自动关机问题的测试和解决方案。  
+
+	设置 hibernatemode 和 proximitywake：
 	- ###### `sudo pmset -a hibernatemode 0`
 	- ###### `sudo pmset -a proximitywake 0`
 	or:  
   	![Image text](screenshot/QQ20220523-130847.png)  
 	
-	
-
 	
 ## 预览
  ![Image text](screenshot/QQ20220607-190543@2x.png)   
