@@ -824,7 +824,7 @@
 				Rg==
 				</data>
 				<key>boot-args</key>
-				<string>-v keepsyms=1 shikigva=80 agdpmod=pikera</string>
+				<string>-v keepsyms=1 shikigva=80 gfxrst=1 agdpmod=pikera</string>
 				<key>csr-active-config</key>
 				<data>
 				7w8AAA==

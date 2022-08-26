@@ -65,14 +65,14 @@ downloads
 ## 使用
  1. 关于各个配置文件：  
     #### config.plist（默认）：   
-	- 为核显加速且未指定独显的版本，（因为在有独显情况下开核显会导致启动卡40s左右，单核显版不卡。）  
+	- 为核显加速且未指定独显的版本。（AMD卡非RX5700XT的请使用该plist并自行设置显卡参数）
     #### config_iGPU.plist： 
 	- 为只有核显版本，HDMI接口 画面和音频正常；DP接口 画面和音频正常(HDMI和DP共存时，只能HDMI输出音频)。  
-	  NVIDIA卡请使用该plist，并在 boot-args 属性中加入 -wegnoegpu 屏蔽独显。
+	  （NVIDIA卡请使用该plist，并在 boot-args 属性中加入 -wegnoegpu 屏蔽独显）
 	#### config_RX5700XT.plist： 
 	- 为RX5700XT优化核显加速版本，RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。
 	#### config_RX5700XT&iGPU.plist： 
-	- 为RX5700XT优化+核显版本（启动卡40s左右），RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。  
+	- 为RX5700XT优化核显共存版本，RX Vega 56/64 / RX 5xxx / RX 6xxx 系列 请查看[AMD GPU #25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/25) 或者尝试勾选 RadeonBoost.kext 进行优化。  
 
  2. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)  
 
@@ -117,7 +117,8 @@ downloads
 	
 ## 预览
  ![Image text](screenshot/QQ20220607-190543@2x.png)   
- ![Image text](screenshot/QQ20200920-183718.png)   
+ ![Image text](screenshot/QQ20200920-183718.png)
+ ![Image text](screenshot/QQ20220826141938.png)
  ![Image text](screenshot/MSI_SnapShot_黑苹果&WIN11.bmp)   
 
 
