@@ -88,7 +88,7 @@ jobs:
             echo "::set-output name=status::success"
             echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
           else
-            echo "::set-output name=release_tag::${{ inputs.platform }}"
+            echo "::set-output name=release_tag::${{ inputs.version }}"
             echo "::set-output name=status::success"
             echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
           fi
