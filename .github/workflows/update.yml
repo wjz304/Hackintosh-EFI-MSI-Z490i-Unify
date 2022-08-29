@@ -135,7 +135,7 @@ jobs:
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body: ${{ env.changesbody }}
           files: Hackintosh*.zip
-          prerelease: env.ischanges
+          prerelease: ${{ env.ischanges }}
 
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@main
