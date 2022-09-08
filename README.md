@@ -122,9 +122,10 @@ downloads
  ![Image text](screenshot/MSI_SnapShot_黑苹果&WIN11.bmp)   
 
 
-## Stargazers over time
+## 总结
+该 EFI 已经维护了2年整(2020/09/06~今), 基本算是完美了, 马上13代了, 这个系列应该不会有新用户了吧.
+<div><img src="https://raw.githubusercontent.com/wjz304/wjz304/master/my/20220908134226.jpg" width="500"></div>
 
-[![Stargazers over time](https://starchart.cc/wjz304/Hackintosh-EFI-MSI-Z490i-Unify.svg)](https://starchart.cc/wjz304/Hackintosh-EFI-MSI-Z490i-Unify)
 
 
 ## 鸣谢
