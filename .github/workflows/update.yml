@@ -27,16 +27,16 @@ env:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.2
 
       - name: Set up Python 3
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: '3.10'
 
       - name: Checkout
         uses: actions/checkout@main
@@ -84,13 +84,11 @@ jobs:
         id: tag
         run: |
           if [ ${{ env.ischanges }} == 'true' ]; then 
-            echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-            echo "::set-output name=status::success"
-            echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
+            echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
+            echo "repository_name=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')" >> $GITHUB_ENV
           else
-            echo "::set-output name=release_tag::${{ inputs.version }}"
-            echo "::set-output name=status::success"
-            echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
+            echo "release_tag=${{ inputs.version }}" >> $GITHUB_ENV
+            echo "repository_name=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')" >> $GITHUB_ENV
           fi
 
       - name: Zip EFI
@@ -99,7 +97,7 @@ jobs:
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ steps.tag.outputs.repository_name }}-${{ steps.tag.outputs.release_tag }}.zip
+          dest: ${{ env.repository_name }}-${{ env.release_tag }}.zip
 
       - name: Chanage Ventura
         if: env.ischanges == 'true'
@@ -111,7 +109,7 @@ jobs:
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ steps.tag.outputs.repository_name }}-Ventura-${{ steps.tag.outputs.release_tag }}.zip
+          dest: ${{ env.repository_name }}-Ventura-${{ env.release_tag }}.zip
 
       - name: Chanage Monterey
         if: env.ischanges == 'true'
@@ -123,7 +121,7 @@ jobs:
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ steps.tag.outputs.repository_name }}-Monterey-${{ steps.tag.outputs.release_tag }}.zip
+          dest: ${{ env.repository_name }}-Monterey-${{ env.release_tag }}.zip
 
 
       - name: Upload firmware to release
@@ -132,13 +130,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag.outputs.release_tag }}
+          tag_name: ${{ env.release_tag }}
           body: ${{ env.changesbody }}
           files: Hackintosh*.zip
           prerelease: ${{ env.ischanges }}
 
       - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@main
+        uses: Mattraks/delete-workflow-runs@v2
         with:
           retain_days: 1
           keep_minimum_runs: 3
+
