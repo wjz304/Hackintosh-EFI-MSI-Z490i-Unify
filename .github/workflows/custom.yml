@@ -182,7 +182,6 @@ jobs:
 
       - name: Generate release tag
         if: env.iscustom == 'true'
-        id: tag
         run: |
           echo "### EFI Custom" >> $GITHUB_STEP_SUMMARY
           if [ ${{ env.iscustom }} == 'true' ]; then
