@@ -190,14 +190,12 @@ jobs:
             echo "👉 Custom: {ocver: ${{ env.ocver }}, itlwm: ${{ env.itlwm }}, kexts: ${{ env.kexts }}}" >> $GITHUB_STEP_SUMMARY
           fi
           echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
-          echo "repository_name=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')" >> $GITHUB_ENV
-
 
       - name: Upload to Artifacts
         if: env.iscustom == 'true'
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.repository_name }}-Custom-${{ env.release_tag }}
+          name: ${{ github.event.repository.name }}-Custom-${{ env.release_tag }}
           path: |
             EFI
             README.md

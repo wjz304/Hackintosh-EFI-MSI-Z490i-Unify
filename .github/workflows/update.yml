@@ -85,10 +85,8 @@ jobs:
         run: |
           if [ ${{ env.ischanges }} == 'true' ]; then 
             echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
-            echo "repository_name=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')" >> $GITHUB_ENV
           else
             echo "release_tag=${{ inputs.version }}" >> $GITHUB_ENV
-            echo "repository_name=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')" >> $GITHUB_ENV
           fi
 
       - name: Zip EFI
@@ -97,7 +95,7 @@ jobs:
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ env.repository_name }}-${{ env.release_tag }}.zip
+          dest: ${{ github.event.repository.name }}-${{ env.release_tag }}.zip
 
       - name: Chanage Ventura
         if: env.ischanges == 'true'
@@ -109,7 +107,7 @@ jobs:
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ env.repository_name }}-Ventura-${{ env.release_tag }}.zip
+          dest: ${{ github.event.repository.name }}-Ventura-${{ env.release_tag }}.zip
 
       - name: Chanage Monterey
         if: env.ischanges == 'true'
@@ -121,7 +119,7 @@ jobs:
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ env.repository_name }}-Monterey-${{ env.release_tag }}.zip
+          dest: ${{ github.event.repository.name }}-Monterey-${{ env.release_tag }}.zip
 
 
       - name: Upload firmware to release
