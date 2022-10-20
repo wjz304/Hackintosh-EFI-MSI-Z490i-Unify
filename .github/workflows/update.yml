@@ -121,7 +121,6 @@ jobs:
           recursive: false
           dest: ${{ github.event.repository.name }}-Monterey-${{ env.release_tag }}.zip
 
-
       - name: Upload firmware to release
         if: env.ischanges == 'true' || github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v1
@@ -133,9 +132,9 @@ jobs:
           files: Hackintosh*.zip
           prerelease: ${{ env.ischanges }}
 
-      - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2
-        with:
-          retain_days: 1
-          keep_minimum_runs: 3
+      #- name: Delete workflow runs
+      #  uses: Mattraks/delete-workflow-runs@v2
+      #  with:
+      #    retain_days: 1
+      #    keep_minimum_runs: 3
 

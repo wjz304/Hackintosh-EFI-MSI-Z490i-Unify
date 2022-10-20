@@ -8,7 +8,7 @@ jobs:
   test-and-cover:
     runs-on: macos-12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@main
 
       #- uses: brokeyourbike/ocvalidate-action@v0.2
       #  with:
@@ -25,7 +25,7 @@ jobs:
         run: |
           brew install curl jq
 
-          ocmoddlurl=$(curl -s --location "https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases/latest" | jq -r .assets[1].browser_download_url)
+          ocmoddlurl=$(curl -L "https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases/latest" | jq -r .assets[1].browser_download_url)
           curl -L ${ocmoddlurl} -o ocmod.zip
           unzip ocmod.zip -d ocmod
 
