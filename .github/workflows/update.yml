@@ -91,7 +91,7 @@ jobs:
 
       - name: Zip EFI
         if: env.ischanges == 'true' || github.event_name == 'workflow_dispatch'
-        uses: vimtor/action-zip@v1
+        uses: vimtor/action-zip@v1.1
         with:
           files: EFI README.md
           recursive: false
@@ -103,7 +103,7 @@ jobs:
 
       - name: Zip EFI Ventura
         if: env.ischanges == 'true'
-        uses: vimtor/action-zip@v1
+        uses: vimtor/action-zip@v1.1
         with:
           files: EFI README.md
           recursive: false
@@ -115,7 +115,7 @@ jobs:
 
       - name: Zip EFI Monterey
         if: env.ischanges == 'true'
-        uses: vimtor/action-zip@v1
+        uses: vimtor/action-zip@v1.1
         with:
           files: EFI README.md
           recursive: false
