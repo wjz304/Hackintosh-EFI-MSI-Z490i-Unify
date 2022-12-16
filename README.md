@@ -40,10 +40,11 @@ downloads
  型号     |
  主板     | 微星 MEG Z490I UNIFY (MS-7C77)
  处理器   | 英特尔 Core i7-10700K @ 3.80GHz 八核
- 内存     | 64 GB ( 海盗船 DDR4 3600MHz )
- 硬盘     | 西数 WDS100T3X0C-00SJG0 SN750 ( 1 TB / 固态硬盘 )
+ 内存     | 64 GB ( 海盗船 DDR4 3600MHz 32GB x 2 )
+ 硬盘     | 西数 WD_BLACK SN850X 1000GB ( 1 TB / 固态硬盘 )
  显卡     | AMD Radeon RX 5700 XT ( 8 GB / 蓝宝石 )
- 无线网卡 | 英特尔® Wi-Fi 6 AX201 ( 板载 )
+ 无线网卡 | 英特尔® Wi-Fi 6 AX201 160MHz ( 板载 )
+ 有线网卡 | Realtek RTL8125B
  声卡     | Realtek ALC S1220A
  触摸板   |
  触摸屏   |
