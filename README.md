@@ -78,8 +78,10 @@ downloads
  2. 显示器声音控制软件：[MonitorControl](https://github.com/MonitorControl/MonitorControl)  
 
  3. 关于USB：  
- 	USBPorts_9pin.kext 为不包含主板的 Type-E 接口的版本。（默认）    
-	USBPorts_typee.kext 为不包含主板的 9pin 接口的版本。  
+ 	USBPorts_9pin.kext 为舍弃主板的 Type-E 接口的版本。（默认）    
+	USBPorts_typee.kext 为舍弃主板的 9pin 接口的版本。  
+	(由于15个u口的限制, USBPorts_9pin.kext 和 USBPorts_typee.kext 均舍弃了 后置TYPE-C和红色USB两个口的2.0兼容. 悉知!)  
+	
 	USBPorts_Z490_beta.kext 为Z490 UNIFY (non-i)版本，仅定制部分USB满足安装和日常使用，(感谢网友（SUNN）提供USB MAP信息)。  
 	直接拷贝替换 USBPorts.kext 即可。  
 
