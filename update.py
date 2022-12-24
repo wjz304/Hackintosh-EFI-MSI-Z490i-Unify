@@ -150,42 +150,6 @@ class UpdateKexts():
                         break
             break
 
-    def upgradeI2C(self):
-        print('upgrade {}'.format('VoodooI2C and VoodooI2CHID'))
-        res = self.PM.request('GET', 'https://api.github.com/repos/VoodooI2C/VoodooI2C/releases')
-        self.i2c = json.loads(res.data.decode('utf-8'))
-        for i2cVer in self.i2c:
-            if self.alpha is False and 'alpha' in i2cVer['name'].lower():
-                continue
-            if i2cVer['published_at'] > date_last:
-                for item in i2cVer['assets']:
-                    if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
-                        url = item['browser_download_url']
-                        self.__dlExt(url, './tmp')
-                        self.__xcopy('./tmp/VoodooI2C.kext', 'EFI/OC/Kexts/VoodooI2C.kext')
-                        self.__xcopy('./tmp/VoodooI2CHID.kext', 'EFI/OC/Kexts/VoodooI2CHID.kext')
-                        shutil.rmtree('./tmp')
-                        break
-            break
-
-        
-    def upgradeEC(self):
-        print('upgrade {}'.format('ECEnabler'))
-        res = self.PM.request('GET', 'https://api.github.com/repos/1Revenger1/ECEnabler/releases')
-        self.i2c = json.loads(res.data.decode('utf-8'))
-        for i2cVer in self.i2c:
-            if self.alpha is False and 'alpha' in i2cVer['name'].lower():
-                continue
-            if i2cVer['published_at'] > date_last:
-                for item in i2cVer['assets']:
-                    if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
-                        url = item['browser_download_url']
-                        self.__dlExt(url, './tmp')
-                        self.__xcopy('./tmp/ECEnabler.kext', 'EFI/OC/Kexts/ECEnabler.kext')
-                        shutil.rmtree('./tmp')
-                        break
-            break
-
     def upgradeRTL8125E(self):
         print('upgrade {}'.format('RTL8125E'))
         res = self.PM.request('GET', 'https://api.github.com/repos/Mieze/LucyRTL8125Ethernet/releases')
