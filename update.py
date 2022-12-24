@@ -406,16 +406,16 @@ class UpdateKexts():
         try:
             for pf in os.listdir('EFI/OC/'):
                 if os.path.isfile('EFI/OC/{}'.format(pf)) and pf.endswith('.plist'):
-                    isChanage = False
+                    isChange = False
                     with open('EFI/OC/{}'.format(pf), 'rb') as f:
                         pldata = plistlib.load(f, fmt=plistlib.FMT_XML)
                     for kext in pldata['Kernel']['Add']:
                         with open('EFI/OC/Kexts/{}/{}'.format(kext['BundlePath'], kext['PlistPath']), 'rb') as fp:
                             kextpldata = plistlib.load(fp, fmt=plistlib.FMT_XML)
                         if kext['Comment'].split('|')[0].strip().replace('V', '') != kextpldata['CFBundleVersion']:
-                            isChanage = True
+                            isChange = True
                             kext['Comment'] = 'V' + kextpldata['CFBundleVersion'] if kext['Comment'].split('|')[-1].strip() == '' else 'V' + kextpldata['CFBundleVersion'] + ' | ' + kext['Comment'].split('|')[-1].strip()
-                    if isChanage == False:
+                    if isChange == False:
                         continue
                     with open('EFI/OC/{}'.format(pf), 'wb') as f:
                         plistlib.dump(pldata, f, fmt=plistlib.FMT_XML)
@@ -425,11 +425,11 @@ class UpdateKexts():
             return 1
 
 
-    def update(self, ocver, itver, kever, ischanage = False):
+    def update(self, ocver, itver, kever, ischange = False):
         if kever == 'stable':
             self.alpha = False
 
-        if ischanage == False or (ischanage == True and kever != ''):
+        if ischange == False or (ischange == True and kever != ''):
             if self.alpha is True:
                 for kext in self.kexts:
                     try:
@@ -457,14 +457,14 @@ class UpdateKexts():
                 print('IBT Kexts update error!')
                 return 2
 
-        if ischanage == False or (ischanage == True and (itver != [] or kever != '')):
+        if ischange == False or (ischange == True and (itver != [] or kever != '')):
             try:
                 self.upgradeItlwm(itver)
             except:
                 print('Itlwm Kexts update error!')
                 return 2
 
-        if ischanage == False or (ischanage == True and ocver != ''):
+        if ischange == False or (ischange == True and ocver != ''):
             try:
                 self.upgradeOC(ocver)
             except:
@@ -478,7 +478,7 @@ class UpdateKexts():
 def help():
     print('Usage: python3 update.py [options...]')
     print('options: [-c] [-o <rel | pre | mod>] [-i <ventura | monterey | big_sur>] [-k <stable | alpha>] [-t <token>]')
-    print('-c, --chanage                                是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
+    print('-c, --change                                 是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
     print('-o, --ocver <rel | pre | mod>                指定OC的版本')
     print('-i, --itlwm <ventura | monterey | big_sur>   指定intel网卡的版本, 多版本以","分割')
     print('-k, --kexts <stable | alpha>                 指定kext的版本')
@@ -487,12 +487,12 @@ def help():
 
 if __name__ == '__main__':
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hco:i:k:t:",["help", "chanage", "ocver=", "itlwm=", "kexts=", "token="])
+        opts, args = getopt.getopt(sys.argv[1:], "hco:i:k:t:",["help", "change", "ocver=", "itlwm=", "kexts=", "token="])
     except getopt.GetoptError:
         help()
         sys.exit(9)
     
-    isChanage = False
+    isChange = False
     ocver = ''
     kexts = ''
     itlwm = []
@@ -502,8 +502,8 @@ if __name__ == '__main__':
         if opt == ("-h", "--help"):
             help()
             sys.exit()
-        elif opt in ("-c", "--chanage"):
-            isChanage = True
+        elif opt in ("-c", "--change"):
+            isChange = True
         elif opt in ("-o", "--ocver"):
             if not arg.lower() in ('rel', 'pre', 'mod'):
                 help()
@@ -526,9 +526,9 @@ if __name__ == '__main__':
         elif opt in ("-t", "--token"):
             token = arg
 
-    if isChanage is False:
+    if isChange is False:
         if ocver == '':
-            ocver = 'mod'
+            ocver = 'pre'
         if itlwm == []:
             itlwm = ['ventura', 'monterey']
         if kexts == '':
@@ -539,7 +539,7 @@ if __name__ == '__main__':
         headers = { 'user-agent': 'Python-urllib/3.0', 'Authorization': 'token {}'.format(token) }
 
     u1 = UpdateKexts(headers = headers)
-    ret = u1.update(ocver, itlwm, kexts, isChanage)
+    ret = u1.update(ocver, itlwm, kexts, isChange)
 
     if ret == 0:
         u1.checkKextsVer()    # This will change the format of plist file

@@ -97,7 +97,7 @@ jobs:
           recursive: false
           dest: ${{ github.event.repository.name }}-${{ env.release_tag }}.zip
 
-      - name: Chanage Ventura
+      - name: Change Ventura
         if: env.ischanges == 'true'
         run: python3 -u update.py -c -i ventura -t ${{ secrets.GITHUB_TOKEN }}
 
@@ -109,7 +109,7 @@ jobs:
           recursive: false
           dest: ${{ github.event.repository.name }}-Ventura-${{ env.release_tag }}.zip
 
-      - name: Chanage Monterey
+      - name: Change Monterey
         if: env.ischanges == 'true'
         run: python3 -u update.py -c -i monterey -t ${{ secrets.GITHUB_TOKEN }}
 
