@@ -11,7 +11,14 @@ jobs:
   test-and-cover:
     runs-on: macos-12
     steps:
-      - uses: actions/checkout@main
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Initialization environment
+        run : |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          sudo systemsetup -settimezone "Asia/Shanghai"
 
       #- uses: brokeyourbike/ocvalidate-action@v0.2
       #  with:
@@ -26,22 +33,29 @@ jobs:
 
       - name: Get OC-Mod
         run: |
-          brew install curl jq
+          brew install jq
 
           if [ $OCVER == 'rel' ]; then
             url="https://api.github.com/repos/acidanthera/OpenCorePkg/releases/latest"
           elif [ $OCVER == 'pre' ]; then
-            url="https://api.github.com/repos/dortania/build-repo/releases"
+            url="https://api.github.com/repos/dortania/build-repo/releases/latest"
           else
-            url="https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases"
+            url="https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases/latest"
           fi
 
           ocdownloadurl=$(curl -L ${url} | jq -r .assets[1].browser_download_url)
           curl -L ${ocdownloadurl} -o oc.zip
           unzip oc.zip -d oc
 
-      - run: |
+      - name: OC Validate
+        run: |
           oc/Utilities/ocvalidate/ocvalidate "EFI/OC/config.plist" || exit 1
           oc/Utilities/ocvalidate/ocvalidate "EFI/OC/config_iGPU.plist" || exit 1
           oc/Utilities/ocvalidate/ocvalidate "EFI/OC/config_RX5700XT.plist" || exit 1
           oc/Utilities/ocvalidate/ocvalidate "EFI/OC/config_RX5700XT&iGPU.plist" || exit 1
+
+      #- name: Delete workflow runs
+      #  uses: Mattraks/delete-workflow-runs@v2
+      #  with:
+      #    retain_days: 1
+      #    keep_minimum_runs: 3
