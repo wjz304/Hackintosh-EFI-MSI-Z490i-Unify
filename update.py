@@ -323,8 +323,8 @@ class UpdateKexts():
         res = self.PM.request('GET', url)
         self.ocmod = json.loads(res.data.decode('utf-8'))
         for ocVer in self.ocmod:
+            if ocver == 'pre' and not 'opencore' in ocVer['name'].lower() : continue
             if ocVer['published_at'] > date_last:
-
                 for item in ocVer['assets']:
                     if 'release' in item['name'].lower():
                         url = item['browser_download_url']
