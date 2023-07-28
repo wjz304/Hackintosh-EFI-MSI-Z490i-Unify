@@ -269,8 +269,8 @@ class UpdateKexts():
                             # 
                             url = item['browser_download_url']
                             self.__dlExt(url, './tmp')
-                            # self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm.kext')
-                            self.__xcopy('./tmp/AirportItlwm.kext', 'EFI/OC/Kexts/AirportItlwm.kext')
+                            self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm.kext')
+                            # self.__xcopy('./tmp/AirportItlwm.kext', 'EFI/OC/Kexts/AirportItlwm.kext')
                             shutil.rmtree('./tmp')
                             break
                     else:
@@ -279,8 +279,8 @@ class UpdateKexts():
                                 # 
                                 url = item['browser_download_url']
                                 self.__dlExt(url, './tmp')
-                                # self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm-{}.kext'.format(itveridx))
-                                self.__xcopy('./tmp/AirportItlwm.kext', 'EFI/OC/Kexts/AirportItlwm-{}.kext'.format(itveridx))
+                                self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm-{}.kext'.format(itveridx))
+                                # self.__xcopy('./tmp/AirportItlwm.kext', 'EFI/OC/Kexts/AirportItlwm-{}.kext'.format(itveridx))
                                 shutil.rmtree('./tmp')
                                 break
 
