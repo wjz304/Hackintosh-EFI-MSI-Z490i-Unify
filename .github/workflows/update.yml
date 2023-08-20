@@ -53,7 +53,7 @@ jobs:
           pip3 install datetime urllib3 wget
 
       - name: Run Updater
-        run: python3 -u update.py -i monterey,ventura -t ${{ secrets.GITHUB_TOKEN }}
+        run: python3 -u update.py -i sonoma,ventura,monterey -t ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check for changes
         run: |
@@ -96,6 +96,18 @@ jobs:
           files: EFI README.md
           recursive: false
           dest: ${{ github.event.repository.name }}-${{ env.release_tag }}.zip
+
+      - name: Change Sonoma
+        if: env.ischanges == 'true'
+        run: python3 -u update.py -c -i sonoma -t ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Zip EFI Sonoma
+        if: env.ischanges == 'true'
+        uses: vimtor/action-zip@v1.1
+        with:
+          files: EFI README.md
+          recursive: false
+          dest: ${{ github.event.repository.name }}-Sonoma-${{ env.release_tag }}.zip
 
       - name: Change Ventura
         if: env.ischanges == 'true'

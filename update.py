@@ -59,7 +59,9 @@ class UpdateKexts():
 
     def __macosVer(self, osx=''):
         ver = 0
-        if osx.lower() in ['ventura', '22']:
+        if osx.lower() in ['sonoma', '23']:
+            ver = 14
+        elif osx.lower() in ['ventura', '22']:
             ver = 13
         elif osx.lower() in ['monterey', '21']:
             ver = 12
@@ -69,7 +71,9 @@ class UpdateKexts():
 
     def __kernelVer(self, osx=''):
         ver = 0
-        if osx.lower() in ['ventura', '13']:
+        if osx.lower() in ['sonoma', '14']:
+            ver = 23
+        elif osx.lower() in ['ventura', '13']:
             ver = 22
         elif osx.lower() in ['monterey', '12']:
             ver = 21
@@ -167,7 +171,7 @@ class UpdateKexts():
                         break
             break
         
-    def upgradeItlwm(self, itver = ['ventura', 'monterey']):
+    def upgradeItlwm(self, itver = ['sonoma', 'ventura', 'monterey']):
         print('upgrade {}'.format('AirportItlwm_{} and itlwm'.format(itver)))
         res = self.PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
         self.itlwm = json.loads(res.data.decode('utf-8'))
@@ -178,6 +182,8 @@ class UpdateKexts():
                 if len(itver) == 1:
                     for f in os.listdir('EFI/OC/Kexts')[:]:
                         if f.startswith('AirportItlwm-'):
+                            if f == 'AirportItlwm-{}.kext'.format(itver[0]):
+                                self.__xcopy('EFI/OC/Kexts/{}'.format(f), 'EFI/OC/Kexts/AirportItlwm.kext')
                             if os.path.isdir('EFI/OC/Kexts/{}'.format(f)):
                                 shutil.rmtree('EFI/OC/Kexts/{}'.format(f))
                             else:
@@ -220,7 +226,7 @@ class UpdateKexts():
                 else:
                     kextitver = ['AirportItlwm-{}.kext'.format(i) for i in itver]
                     for f in os.listdir('EFI/OC/Kexts')[:]:
-                        if f == 'AirportItlwm.kext' or (f.startswith('AirportItlwm-') and not f in kextitver):
+                        if (f == 'AirportItlwm.kext' or f.startswith('AirportItlwm-')) and f not in kextitver:
                             if os.path.isdir('EFI/OC/Kexts/{}'.format(f)):
                                 shutil.rmtree('EFI/OC/Kexts/{}'.format(f))
                             else:
@@ -443,12 +449,12 @@ class UpdateKexts():
 
 def help():
     print('Usage: python3 update.py [options...]')
-    print('options: [-c] [-o <rel | pre | mod>] [-i <ventura | monterey | big_sur>] [-k <stable | alpha>] [-t <token>]')
-    print('-c, --change                                 是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
-    print('-o, --ocver <rel | pre | mod>                指定OC的版本')
-    print('-i, --itlwm <ventura | monterey | big_sur>   指定intel网卡的版本, 多版本以","分割')
-    print('-k, --kexts <stable | alpha>                 指定kext的版本')
-    print('-h, --help                                   显示帮助')
+    print('options: [-c] [-o <rel | pre | mod>] [-i <sonoma | ventura | monterey | big_sur>] [-k <stable | alpha>] [-t <token>]')
+    print('-c, --change                                          是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
+    print('-o, --ocver <rel | pre | mod>                         指定OC的版本')
+    print('-i, --itlwm <sonoma | ventura | monterey | big_sur>   指定intel网卡的版本, 多版本以","分割')
+    print('-k, --kexts <stable | alpha>                          指定kext的版本')
+    print('-h, --help                                            显示帮助')
 
 
 if __name__ == '__main__':
@@ -478,7 +484,7 @@ if __name__ == '__main__':
                 ocver = arg.lower()
         elif opt in ("-i", "--itlwm"):
             itvers = [x.strip() for x in re.split(',| |\|',arg.lower()) if x.strip()!='']
-            if not set(itvers) <= set(['ventura', 'monterey', 'big_sur']):
+            if not set(itvers) <= set(['sonoma', 'ventura', 'monterey', 'big_sur']):
                 help()
                 sys.exit()
             else:
@@ -496,7 +502,7 @@ if __name__ == '__main__':
         if ocver == '':
             ocver = 'pre'
         if itlwm == []:
-            itlwm = ['ventura', 'monterey']
+            itlwm = ['sonoma', 'ventura', 'monterey']
         if kexts == '':
             kexts = 'alpha'
 

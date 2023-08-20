@@ -23,11 +23,12 @@ on:
         - mod
 
       itlwm:
-        description: 'ventura | monterey | big_sur'
+        description: 'sonoma | ventura | monterey | big_sur'
         required: true
         default: 'ventura' 
         type: choice
         options:
+        - sonoma
         - ventura
         - monterey
         - big_sur
@@ -82,7 +83,7 @@ jobs:
               if [ ${ARR[@]} != ${ocver} ]; then
                   iscustom=false
               fi
-              ARR=(ventura monterey big_sur)
+              ARR=(sonoma ventura monterey big_sur)
               if [ ${ARR[@]} != ${itlwm} ]; then
                   iscustom=false
               fi
