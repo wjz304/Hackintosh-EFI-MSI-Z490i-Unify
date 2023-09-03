@@ -636,6 +636,29 @@
 					AwAAAA==
 					</data>
 					<key>Codec</key>
+					<string>Goldfish64 - AD1884 - Panasonic Toughbook CF-30</string>
+					<key>CodecID</key>
+					<integer>299112580</integer>
+					<key>ConfigData</key>
+					<data>
+					ARccIAEXHRABFx4hARcfAQEnHBABJx0BASce
+					EAEnH5ABJwwCATcc8AE3HQABNx4AATcfQAFH
+					HDABRx0QAUcegQFHHwEBVxzwAVcdAAFXHgAB
+					Vx9AAWcc8AFnHQABZx4AAWcfQAGnHPABpx0A
+					AaceAAGnH0ABtxzwAbcdAAG3HgABtx9AAccc
+					8AHHHQABxx4AAccfQA==
+					</data>
+					<key>FuncGroup</key>
+					<integer>1</integer>
+					<key>LayoutID</key>
+					<integer>11</integer>
+				</dict>
+				<dict>
+					<key>AFGLowPowerState</key>
+					<data>
+					AwAAAA==
+					</data>
+					<key>Codec</key>
 					<string>MacPeet - AD1984 - for_IBM_Lenovo_ThinkPad_T61_T61p</string>
 					<key>CodecID</key>
 					<integer>299112836</integer>
