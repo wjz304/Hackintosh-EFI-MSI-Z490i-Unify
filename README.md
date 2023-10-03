@@ -59,6 +59,7 @@ downloads
 4 |OC\CPU Features\CFG Lock                   | [Disabled]
 5 |Security Device Support                    | [Enabled] （Win11 - TPM 2.0）
 6 |Settings\Security\Secure Boot              | [Disabled] （BIOS Ver ≥ 1C0）
+7 |Setting\高级\Re-size BAR Support            | [Disabled] （BIOS Ver ≥ 1D0）
 
 ***或者使用微星主板自带的 D.T.M 功能, 一键开启黑苹果所需设置. ***  
 *[参考附件 screenshot/MSI_SnapShot_微星一键黑苹果.bmp]*  
