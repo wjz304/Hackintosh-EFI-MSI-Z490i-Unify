@@ -126,11 +126,8 @@ downloads
  ![Image text](screenshot/MSI_SnapShot_黑苹果&WIN11.bmp)   
 
 
-## 总结
-该 EFI 已经维护了2年整(2020/09/06~今), 基本算是完美了, 马上13代了, 这个系列应该不会有新用户了吧.
-<details><summary>打赏一下</summary>
-<div><img src="https://raw.githubusercontent.com/wjz304/wjz304/master/my/20220908134226.jpg" width="500"></div>
-</details>
+## 打赏一下 Sponsoring
+- <img src="https://raw.githubusercontent.com/wjz304/wjz304/master/my/buymeacoffee.png" width="700">
 
 
 ## 鸣谢
