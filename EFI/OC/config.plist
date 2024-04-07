@@ -366,7 +366,7 @@
 				<key>BundlePath</key>
 				<string>LucyRTL8125Ethernet.kext</string>
 				<key>Comment</key>
-				<string>V1.1.0 | Realtek Ethernet LAN</string>
+				<string>V1.2.0d5 | Realtek Ethernet LAN</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>

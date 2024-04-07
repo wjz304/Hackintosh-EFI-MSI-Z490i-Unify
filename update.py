@@ -417,11 +417,11 @@ class UpdateKexts():
                         print('Dortania Kexts update error!')
                         return 1
 
-            try:
-                self.upgradeRTL8125E()
-            except:
-                print('RTL8125E Kexts update error!')
-                return 2
+            # try:
+            #     self.upgradeRTL8125E()
+            # except:
+            #     print('RTL8125E Kexts update error!')
+            #     return 2
 
             try:
                 self.upgradeIBT()
