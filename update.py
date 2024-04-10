@@ -48,6 +48,7 @@ class UpdateKexts():
             ['VirtualSMC', 'EFI/OC/Kexts/SMCProcessor.kext', 'Kexts/SMCProcessor.kext'],
             ['AppleALC', 'EFI/OC/Kexts/AppleALC.kext', 'AppleALC.kext'],
             # ['LucyRTL8125Ethernet', 'EFI/OC/Kexts/LucyRTL8125Ethernet.kext', 'LucyRTL8125Ethernet.kext'],
+            # ['RestrictEvents.kext', 'EFI/OC/Kexts/RestrictEvents.kext', 'RestrictEvents.kext'],
             # ['itlwm', 'EFI/OC/Kexts/itlwm.kext', 'itlwm.kext'],
             # ['AirportItlwm', 'EFI/OC/Kexts/AirportItlwm.kext', 'AirportItlwm.kext'],
             ['BrcmPatchRAM', 'EFI/OC/Kexts/BlueToolFixup.kext', 'BlueToolFixup.kext'],
