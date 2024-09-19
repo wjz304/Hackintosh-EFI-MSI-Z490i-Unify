@@ -361,7 +361,7 @@
 				<key>BundlePath</key>
 				<string>Lilu.kext</string>
 				<key>Comment</key>
-				<string>V1.6.8 | Patch engine</string>
+				<string>V1.6.9 | Patch engine</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -379,7 +379,7 @@
 				<key>BundlePath</key>
 				<string>VirtualSMC.kext</string>
 				<key>Comment</key>
-				<string>V1.3.3 | Advanced SMC emulation</string>
+				<string>V1.3.4 | Advanced SMC emulation</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -397,7 +397,7 @@
 				<key>BundlePath</key>
 				<string>SMCProcessor.kext</string>
 				<key>Comment</key>
-				<string>V1.3.3 | VirtualSMC Plugin</string>
+				<string>V1.3.4 | VirtualSMC Plugin</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -415,7 +415,7 @@
 				<key>BundlePath</key>
 				<string>SMCSuperIO.kext</string>
 				<key>Comment</key>
-				<string>V1.3.3 | VirtualSMC Plugin</string>
+				<string>V1.3.4 | VirtualSMC Plugin</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -451,7 +451,7 @@
 				<key>BundlePath</key>
 				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
-				<string>V1.6.7 | Various patches necessary for GPUs</string>
+				<string>V1.6.8 | Various patches necessary for GPUs</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -469,7 +469,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string>V1.9.1 | Audio patches</string>
+				<string>V1.9.2 | Audio patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -561,7 +561,7 @@
 				<key>Comment</key>
 				<string>V2.3.0 | 3rd Wi-Fi</string>
 				<key>Enabled</key>
-				<false/>
+				<true/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/itlwm</string>
 				<key>MaxKernel</key>
@@ -575,11 +575,29 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
+				<string>AirportItlwm-sequoia.kext</string>
+				<key>Comment</key>
+				<string>V2.3.0 | 15 Wi-Fi</string>
+				<key>Enabled</key>
+				<false/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/AirportItlwm</string>
+				<key>MaxKernel</key>
+				<string>23.99.99</string>
+				<key>MinKernel</key>
+				<string>23.00.00</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
 				<string>AirportItlwm-sonoma.kext</string>
 				<key>Comment</key>
 				<string>V2.3.0 | 14 Wi-Fi</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/AirportItlwm</string>
 				<key>MaxKernel</key>
@@ -597,7 +615,7 @@
 				<key>Comment</key>
 				<string>V2.3.0 | 13 Wi-Fi</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/AirportItlwm</string>
 				<key>MaxKernel</key>
@@ -615,7 +633,7 @@
 				<key>Comment</key>
 				<string>V2.3.0 | 12 Wi-Fi</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/AirportItlwm</string>
 				<key>MaxKernel</key>

@@ -6,7 +6,7 @@
 
 ## 说明  
 MSI-Z490i-Unify 的黑苹果 EFI  (Z490 UNIFY 兼容)  
-当前支持 Monterey 12(b), Ventura 13(b), Sonoma 14(b)
+当前支持 Monterey 12(b), Ventura 13(b), Sonoma 14(b), Sequoia 15(b)
 <!--
 downloads
 <a href="https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/releases/latest">
