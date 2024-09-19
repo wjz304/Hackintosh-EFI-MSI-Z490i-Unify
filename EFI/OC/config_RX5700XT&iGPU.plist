@@ -583,9 +583,9 @@
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/AirportItlwm</string>
 				<key>MaxKernel</key>
-				<string>23.99.99</string>
+				<string>24.99.99</string>
 				<key>MinKernel</key>
-				<string>23.00.00</string>
+				<string>24.00.00</string>
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
