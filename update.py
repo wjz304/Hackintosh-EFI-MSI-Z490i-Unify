@@ -35,6 +35,11 @@ date_last = ''   # Forced
 
 
 class UpdateKexts():
+    VERS = { "sequoia": {"mv": 15, "kv": 24}, 
+             "sonoma": {"mv": 14, "kv": 23}, 
+             "ventura": {"mv": 13, "kv": 22}, 
+             "monterey": {"mv": 12, "kv": 21}
+            }
     def __init__(self, headers = None) -> None:
         if headers is None:
             headers = {'user-agent': 'Python-urllib/3.0'}
@@ -60,26 +65,14 @@ class UpdateKexts():
 
     def __macosVer(self, osx=''):
         ver = 0
-        if osx.lower() in ['sonoma', '23']:
-            ver = 14
-        elif osx.lower() in ['ventura', '22']:
-            ver = 13
-        elif osx.lower() in ['monterey', '21']:
-            ver = 12
-        elif osx.lower() in ['big_sur', '20']:
-            ver = 11
+        if osx.lower() in self.VERS.keys():
+            ver = self.VERS[osx.lower()]["mv"]
         return ver
 
     def __kernelVer(self, osx=''):
         ver = 0
-        if osx.lower() in ['sonoma', '14']:
-            ver = 23
-        elif osx.lower() in ['ventura', '13']:
-            ver = 22
-        elif osx.lower() in ['monterey', '12']:
-            ver = 21
-        elif osx.lower() in ['big_sur', '11']:
-            ver = 20
+        if osx.lower() in self.VERS.keys():
+            ver = self.VERS[osx.lower()]["kv"]
         return ver
 
     def __dlExt(self, url, dir):
@@ -172,7 +165,8 @@ class UpdateKexts():
                         break
             break
         
-    def upgradeItlwm(self, itver = ['sonoma', 'ventura', 'monterey']):
+    def upgradeItlwm(self, itver = ['sequoia', 'sonoma', 'ventura', 'monterey']):
+        return 0 # Disable upgrade itlwm
         print('upgrade {}'.format('AirportItlwm_{} and itlwm'.format(itver)))
         res = self.PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
         self.itlwm = json.loads(res.data.decode('utf-8'))
@@ -450,10 +444,10 @@ class UpdateKexts():
 
 def help():
     print('Usage: python3 update.py [options...]')
-    print('options: [-c] [-o <rel | pre | mod>] [-i <sonoma | ventura | monterey | big_sur>] [-k <stable | alpha>] [-t <token>]')
+    print('options: [-c] [-o <rel | pre | mod>] [-i <sequoia | ventura | monterey>] [-k <stable | alpha>] [-t <token>]')
     print('-c, --change                                          是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
     print('-o, --ocver <rel | pre | mod>                         指定OC的版本')
-    print('-i, --itlwm <sonoma | ventura | monterey | big_sur>   指定intel网卡的版本, 多版本以","分割')
+    print('-i, --itlwm <sequoia | sonoma | ventura | monterey>   指定intel网卡的版本, 多版本以","分割')
     print('-k, --kexts <stable | alpha>                          指定kext的版本')
     print('-h, --help                                            显示帮助')
 
@@ -485,7 +479,7 @@ if __name__ == '__main__':
                 ocver = arg.lower()
         elif opt in ("-i", "--itlwm"):
             itvers = [x.strip() for x in re.split(',| |\|',arg.lower()) if x.strip()!='']
-            if not set(itvers) <= set(['sonoma', 'ventura', 'monterey', 'big_sur']):
+            if not set(itvers) <= set(['sequoia', 'sonoma', 'ventura', 'monterey']):
                 help()
                 sys.exit()
             else:
@@ -502,8 +496,8 @@ if __name__ == '__main__':
     if isChange is False:
         if ocver == '':
             ocver = 'pre'
-        if itlwm == []:
-            itlwm = ['sonoma', 'ventura', 'monterey']
+        # if itlwm == []:
+        #     itlwm = ['sequoia', 'sonoma', 'ventura', 'monterey']
         if kexts == '':
             kexts = 'alpha'
 

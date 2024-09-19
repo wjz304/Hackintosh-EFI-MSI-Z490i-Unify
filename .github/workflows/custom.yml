@@ -23,15 +23,15 @@ on:
         - mod
 
       itlwm:
-        description: 'sonoma | ventura | monterey | big_sur'
+        description: 'sequoia | ventura | monterey'
         required: true
         default: 'ventura' 
         type: choice
         options:
+        - sequoia
         - sonoma
         - ventura
         - monterey
-        - big_sur
 
       kexts:
         description: 'stable | alpha'
@@ -83,7 +83,7 @@ jobs:
               if [ ${ARR[@]} != ${ocver} ]; then
                   iscustom=false
               fi
-              ARR=(sonoma ventura monterey big_sur)
+              ARR=(sequoia sonoma ventura monterey)
               if [ ${ARR[@]} != ${itlwm} ]; then
                   iscustom=false
               fi
