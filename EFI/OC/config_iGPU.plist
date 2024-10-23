@@ -229,6 +229,10 @@
 				<data>
 				AQAAAA==
 				</data>
+				<key>enable-metal</key>
+				<data>
+				AQAAAA==
+				</data>
 				<key>framebuffer-con0-alldata</key>
 				<data>
 				AQEJAAAIAADHAwAA
@@ -249,10 +253,6 @@
 				<string>onboard-1</string>
 				<key>model</key>
 				<string>Intel UHD Graphics 630 (Desktop)</string>
-				<key>enable-metal</key>
-				<data>
-				AQAAAA==
-				</data>
 			</dict>
 		</dict>
 		<key>Delete</key>
@@ -376,7 +376,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string>V1.9.2 | Audio patches</string>
+				<string>V1.9.3 | Audio patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
