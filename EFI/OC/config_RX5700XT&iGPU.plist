@@ -365,7 +365,7 @@
 				<key>BundlePath</key>
 				<string>Lilu.kext</string>
 				<key>Comment</key>
-				<string>V1.6.9 | Patch engine</string>
+				<string>V1.7.0 | Patch engine</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -455,7 +455,7 @@
 				<key>BundlePath</key>
 				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
-				<string>V1.6.8 | Various patches necessary for GPUs</string>
+				<string>V1.6.9 | Various patches necessary for GPUs</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
