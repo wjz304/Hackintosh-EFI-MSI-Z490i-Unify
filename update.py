@@ -295,6 +295,7 @@ class UpdateKexts():
             break
 
     def upgradeIBT(self):
+        return 0 # Disable upgrade IBT
         print('upgrade {}'.format('IntelBluetoothFirmware and IntelBluetoothInjector'))
         res = self.PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/IntelBluetoothFirmware/releases')
         self.ibt = json.loads(res.data.decode('utf-8'))

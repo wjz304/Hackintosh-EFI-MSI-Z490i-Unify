@@ -9,8 +9,23 @@ env:
 
 jobs:
   test-and-cover:
-    runs-on: macos-12
+    name: macOS XCODE5
+    runs-on: macos-latest
+    env:
+      JOB_TYPE: BUILD
+      HOMEBREW_NO_INSTALL_CLEANUP: 1
+      HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Checkout
         uses: actions/checkout@main
 
@@ -33,7 +48,7 @@ jobs:
 
       - name: Get OC-Mod
         run: |
-          brew install jq
+          # brew install jq # Warning: jq 1.7.1 is already installed and up-to-date.
 
           if [ $OCVER == 'rel' ]; then
             url="https://api.github.com/repos/acidanthera/OpenCorePkg/releases/latest"

@@ -27,13 +27,19 @@ env:
 
 jobs:
   build:
-    runs-on: macos-12
+    name: macOS XCODE5
+    runs-on: macos-latest
+    env:
+      JOB_TYPE: BUILD
+      HOMEBREW_NO_INSTALL_CLEANUP: 1
+      HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
-      - uses: ruby/setup-ruby@v1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
 
-      - name: Set up Python 3
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
