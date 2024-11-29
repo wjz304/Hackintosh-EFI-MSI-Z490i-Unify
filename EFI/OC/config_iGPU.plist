@@ -642,7 +642,24 @@
 			</dict>
 		</array>
 		<key>Block</key>
-		<array/>
+		<array>
+		<dict>
+			<key>Arch</key>
+			<string>Any</string>
+			<key>Comment</key>
+			<string>Fix Brcm&amp;Intel WiFi</string>
+			<key>Enabled</key>
+			<true/>
+			<key>Identifier</key>
+			<string>com.apple.iokit.IOSkywalkFamily</string>
+			<key>MaxKernel</key>
+			<string></string>
+			<key>MinKernel</key>
+			<string>24.0.0</string>
+			<key>Strategy</key>
+			<string>Exclude</string>
+		</dict>
+		</array>
 		<key>Emulate</key>
 		<dict>
 			<key>Cpuid1Data</key>
