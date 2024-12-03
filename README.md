@@ -30,9 +30,6 @@ downloads
 <img src="https://img.shields.io/github/license/wjz304/Hackintosh-EFI-MSI-Z490i-Unify.svg?style=flat" alt="license"/>
 </a>
 
-* release: 稳定版本. 
-* prerelease: 每天自动更新kext和OC, 可能存在未知问题. 如无必要请使用 release 版本. 
-* 如果需要OC-Mod, 可参考 Custom [#25](https://github.com/wjz304/Hackintosh-EFI-MSI-Z490i-Unify/issues/34) 自动构建打包.   
 
 ## 配置  
  规格     | 详细信息
